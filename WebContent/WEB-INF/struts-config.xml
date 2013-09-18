@@ -40,7 +40,15 @@
                  <forward name="error" path="/pages/error.jsp" redirect="true"/> 
                  <forward name="search" path="/pages/student/search.jsp" redirect="true"/>  
                  <forward name="results" path="/pages/student/results.jsp" redirect="true"/>      
-                 <forward name="edit" path="/pages/student/personal.jsp" redirect="true"/>               
+                 <forward name="edit" path="/pages/student/personal.jsp" redirect="true"/>     
+                 
+                  <forward name="personal" path="/pages/student/personal.jsp" redirect="true"/>     
+                  <forward name="religious" path="/pages/student/religious.jsp" redirect="true"/>     
+                  <forward name="substance" path="/pages/student/substance.jsp" redirect="true"/>     
+                  <forward name="health" path="/pages/student/health.jsp" redirect="true"/>     
+                  <forward name="legal" path="/pages/student/legal.jsp" redirect="true"/>     
+                  <forward name="employment" path="/pages/student/employment.jsp" redirect="true"/>
+                  <forward name="status" path="/pages/student/status.jsp" redirect="true"/>                    
          </action>
        
     </action-mappings>

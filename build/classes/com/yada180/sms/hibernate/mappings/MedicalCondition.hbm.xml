@@ -11,5 +11,8 @@
         <property name="description" type="string">
             <column name="DESCRIPTION" length="45" not-null="true" />
         </property>
+        <property name="sequence" type="java.lang.Integer">
+            <column name="sequence" />
+        </property>
     </class>
 </hibernate-mapping>

@@ -57,24 +57,24 @@
             </div>
             <div class="loginDisplay">
                 	<% if (user.getUsername()!=null) { %>
-                        Welcome <b><%=user.getUsername() %>@<%=user.getFarmBase() %> </b>&nbsp;&nbsp;[ <a href="<%=request.getContextPath()%>/login?action=Log Out" >Log Out</a> ]
+                        Welcome <b><%=user.getUsername() %>@<%=user.getFarmBase() %> </b>&nbsp;&nbsp;[ <a href="<%=request.getContextPath()%>/Login.do?action=logout" >Log Out</a> ]
                     <% } else { %>
                         [ <a href="<%=request.getContextPath()%>/login" >Log In</a> ]
                     <% } %>
             </div>
-             <div class="clear hideSkiplink"> 
+   <div class="clear hideSkiplink"> 
                           
                
     
 		<div class="menu" >	
 		<ul>
-    		<li><a href="<%=request.getContextPath()%>/pages/student/personal.jsp?updateFlag=<%=updateFlag%>" >Personal</a></li>
-      		<li><a href="<%=request.getContextPath()%>/pages/student/religious.jsp?updateFlag=<%=updateFlag%>" >Religious</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/substance.jsp?updateFlag=<%=updateFlag%>" >Substance</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/health.jsp?updateFlag=<%=updateFlag%>" >Health</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/legal.jsp?updateFlag=<%=updateFlag%>" >Legal</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/employment.jsp?updateFlag=<%=updateFlag%>" >Employment</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/status.jsp?updateFlag=<%=updateFlag%>" >Status</a></li>
+    		<li><a href="<%=request.getContextPath()%>/pages/student/personal.jsp" >Personal</a></li>
+      		<li><a href="<%=request.getContextPath()%>/pages/student/religious.jsp" >Religious</a></li>
+            <li><a href="<%=request.getContextPath()%>/pages/student/substance.jsp" >Substance</a></li>
+            <li><a href="<%=request.getContextPath()%>/pages/student/health.jsp" >Health</a></li>
+            <li><a href="<%=request.getContextPath()%>/pages/student/legal.jsp" >Legal</a></li>
+            <li><a href="<%=request.getContextPath()%>/pages/student/employment.jsp" >Employment</a></li>
+            <li><a href="<%=request.getContextPath()%>/pages/student/status.jsp" >Status</a></li>
             <li><a href="<%=request.getContextPath()%>/pages/student/search.jsp" >Search</a></li>
             <li><a href="<%=request.getContextPath()%>/pages/main.jsp" >Home</a></li>
         </ul>
@@ -109,11 +109,10 @@
 		     <a href="<%=request.getContextPath()%>/pages/student/card.jsp" style="color:#19fd01"><b>Print Card</b></a>
 		     &nbsp;&nbsp;&nbsp;
 		     <a href="<%=request.getContextPath()%>/pages/student/card.jsp" style="color:#19fd01""><b>Print Student Information</b></a>
-		     <% //if ("PENDING".equals(IntakeForm.getIntake().getApplicationStatus())&&IntakeForm.getIntake().getIntakeId()!=null) { %>
-		     &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/intake?action=Admit&id=<bean:write name="intakeForm" property="intake.intakeId" />" style="color:#19fd01""><b>Admit To Program</b></a>
-		     &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/intake?action=Deny&id=<bean:write name="intakeForm" property="intake.intakeId" />" style="color:#19fd01""><b>Deny Admission</b></a>
+		     &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/intake?action=Admit&id=" style="color:#19fd01"><b>Admit To Program</b></a>
+		     &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/intake?action=Deny&id=" style="color:#19fd01"><b>Deny Admission</b></a>
 		     </td>
-		     <% //} %>
+		     
     	</tr>
     </table> 
     </div>

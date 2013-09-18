@@ -29,13 +29,14 @@ public class IntakeAction extends Action {
 
 		 HttpSession session = request.getSession(false);
 		 String action=request.getParameter("action");
+		 IntakeForm intakeForm = (IntakeForm)form;
 		 IntakeDao intakeDao = new IntakeDao();
 		 
 		 if ("Search".equals(action)) {
+			 intakeForm.setIntake(new Intake());
+			 
 			 return mapping.findForward(Constants.SEARCH);
 		 } else if ("Search Students".equals(action)) {
-			 IntakeForm intakeForm = (IntakeForm)form;
-			 
 			 String entryDate=intakeForm.getIntake().getEntryDate();
 			 String exitDate=intakeForm.getIntake().getExitDate();
 			 String lastname=intakeForm.getIntake().getLastname();
@@ -50,10 +51,16 @@ public class IntakeAction extends Action {
 		 }
 		 else if ("Edit".equals(action)) {
 			 String key = request.getParameter("key");
-			 IntakeForm intakeForm = (IntakeForm)form; 
 			 Intake intake = intakeDao.findById(new Integer(key));
-			 intakeForm.setIntake(intake);			 
+			 intakeForm.setIntake(intake);	
+			 
 			 return mapping.findForward(Constants.EDIT);
+		 } 
+		 else if ("Save".equals(action)) {
+			 String key = request.getParameter("key");
+			 String source = request.getParameter("source");
+			 
+			 return mapping.findForward(source);
 		 }
 
 

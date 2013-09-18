@@ -57,7 +57,7 @@
                 <td>
                 	<html:select property="intake.farmBase" multiple="true" style="height:90px;" > 
 					<html:option value="ALL">ALL</html:option>
-					<html:optionsCollection name="ddl_farms" value="name" label="name" />
+					<html:optionsCollection name="ddl_farm" value="name" label="name" />
 					</html:select>
                 </td>
                  <td colspan="2">
@@ -71,7 +71,7 @@
                         </td>
                     </tr>
                      <tr>
-                    	<td>Show Pitcure?</td>
+                    	<td>Show Picture?</td>
                     </tr>
                     <tr>
                     	<td><input type="radio" name="pictureFlag" value="YES" />

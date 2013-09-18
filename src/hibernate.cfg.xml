@@ -10,6 +10,9 @@
     
     <mapping resource="com/yada180/sms/hibernate/mappings/SystemUser.hbm.xml"/> 
     <mapping resource="com/yada180/sms/hibernate/mappings/Intake.hbm.xml"/> 
+    <mapping resource="com/yada180/sms/hibernate/mappings/State.hbm.xml"/> 
+    <mapping resource="com/yada180/sms/hibernate/mappings/Question.hbm.xml"/> 
+    <mapping resource="com/yada180/sms/hibernate/mappings/MedicalCondition.hbm.xml"/>
     
   </session-factory>
 </hibernate-configuration>
