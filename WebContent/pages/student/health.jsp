@@ -10,7 +10,6 @@
 
 <jsp:include page="../../includes/header_info.jsp" flush="true"/>
  
-
 <html:form  action="/Intake">
 
     <table width="750" cellpadding="0" cellspacing="0" border="0">
@@ -19,77 +18,57 @@
 	</tr>
 
 	<tr>
-    	<td colspan="8">
-        
-   
+    	<td colspan="8">           		
         </td>
     </tr> 
     
-           <% int count=0;
-              List questions = (ArrayList)session.getAttribute("questions");                       
-       		  
-              for (Iterator iterator =
-            		  questions.iterator(); iterator.hasNext();)
-              {
-       			    Question obj = (Question) iterator.next();
-                    String question = obj.getQuestion();
-        	   
-			 if (count<15) {
-		%>
+        
+		<logic:iterate id="loop" name="intakeForm" property="healthQuestions" indexId="i">
         <tr>
     	<td colspan="7">
-        <%=question%>
+        	<bean:write name="loop" property="question"/>
         </td>
         <td>
-        		<logic:iterate id="loop" name="intakeForm" property="question">
-        	   		   <html:select property="question" indexed="true" styleClass="select" >
-							<html:option value="">Select</html:option>
-							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
-						</html:select>
-				</logic:iterate>
-<br />
+   			<html:select property="healthAnswer[${i}]" styleClass="select" >
+				<html:option value="">Select</html:option>
+				<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+			</html:select>
+			<br />
 		</td>
         </tr>
+        </logic:iterate>
+        
    </table>
    <table width="750" cellpadding="0" cellspacing="0" border="0">
 	<tr>
 		<td colspan="8"><br/><br/><b>Emotional Health:</b><br/><br/></td>
 	</tr> 
-         <%
-         for (Iterator iterator =
-		  questions.iterator(); iterator.hasNext();)
- 		{
-		    Question obj = (Question) iterator.next();
-       		String question = obj.getQuestion();
-  
-		if (count>14&&count<21) { 
-		 %>
+    	<logic:iterate id="loop" name="intakeForm" property="emotionalQuestions" indexId="i">
         <tr>
     	<td width="300">
-        	<%=question%>
+        	<bean:write name="loop" property="question"/>
         </td>
-        <td align="left" colspan="7">
+        <td>
+   			<html:select property="emotionalAnswer[${i}]" styleClass="select" >
+				<html:option value="">Select</html:option>
+				<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+			</html:select>
+			<br />
+		</td>
+		<td width="100" align="left" >
 			How Long Ago?
 		</td>
-		<tr>
-        <td>
-      	   		        <html:select property="question[0]" styleClass="select" >
-							<html:option value="">Select</html:option>
-							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
-						</html:select>
-		</td>
-		 <td colspan="7">
-			<html:text property="questionAnswerDates[0]" size="10" maxlength="10" />
+		<td colspan="4">
+			<html:text property="emotionalAnswerDate[${i}]" size="10" maxlength="10" />
 		</td>
         </tr>
         <tr>
         	<td colspan="8">Please describe:&nbsp;
-        	<html:text property="questionAnswerDetails[0]" size="46" maxlength="45" />
+        	<html:text property="emotionalAnswerDetails[${i}]"  size="46" maxlength="45" />
         	</td>
         </tr>
         <tr><td colspan="8" height="15"></td></tr>
-        <% } //end count
-		count++; } count=0; //end iterator%>
+        </logic:iterate>
 	<tr>
 		<td colspan="8"><br/><b>Physical Health:</b><br/><br/></td>
 	</tr>
@@ -170,36 +149,29 @@
          
          <tr>
          <td colspan="8">
-            <%
-         for (Iterator iterator =
-		  questions.iterator(); iterator.hasNext();)
- 		{
-		    Question obj = (Question) iterator.next();
-       		String question = obj.getQuestion();
-  
-		if (count>20&&count<26) { 
-		 %>
+         
          <table width="100%">
+          <logic:iterate id="loop" name="intakeForm" property="physicalQuestions" indexId="i">
          <tr>
          <td>
-         <%=question%>&nbsp;&nbsp;
-          	   		        <html:select property="question[0]" styleClass="select" >
-							<html:option value="">Select</html:option>
-							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
-						</html:select>
+         <bean:write name="loop" property="question"/>&nbsp;&nbsp;
+          	<html:select property="physicalAnswer[${i}]"  styleClass="select" >
+				<html:option value="">Select</html:option>
+				<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+			</html:select>
 
          </td>
          </tr>
          <tr>
          <td>
-                                    If yes, give diagnosis&nbsp;
-                                    <html:text property="questionAnswerDetails[0]" size="45" maxlength="45" />
+              If yes, give diagnosis&nbsp;
+              <html:text property="physicalAnswerDetails[${i}]"  size="45" maxlength="45" />
                                    
-                                 </td>
+          </td>
          </tr>
+         </logic:iterate>
          </table>
-		<% } //end if 
-		count++; } count=0; //end iterator %>
+		
         </td>
         </tr>
          <tr>
@@ -237,37 +209,22 @@
 	</tr>
 	<tr>
 		<td colspan="8">
-        <%
-        for (Iterator iterator =
-		  questions.iterator(); iterator.hasNext();)
-		{
-		    Question obj = (Question) iterator.next();
-     		String question = obj.getQuestion();
-
-		if (count>25&&count<32) {
-		 %>
-         <%=question%>&nbsp;&nbsp;
-               	   		        <html:select property="question[0]" styleClass="select" >
-									<html:option value="">Select</html:option>
-									<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
-						        </html:select>
+        <logic:iterate id="loop" name="intakeForm" property="mentalQuestions" indexId="i">
+   
+           <bean:write name="loop" property="question"/>&nbsp;&nbsp;&nbsp;&nbsp;
+	            <html:select property="mentalAnswer[${i}]" styleClass="select" >
+					<html:option value="">Select</html:option>
+					<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+				</html:select>
 			<br />
-                                    If yes, when&nbsp;
-                                    <html:text property="questionAnswerDates[0]" size="15" maxlength="15" />
-                                    &nbsp;&nbsp;Details:&nbsp;
-                                    <html:text property="questionAnswerDetails[0]" size="40" maxlength="45" />
-                                    <br /><br />
-		<% } 
-		 count++; } //end iterator%>
-        
-        
+            If yes, when&nbsp;
+            <html:text property="mentalAnswerDate[${i}]" size="15" maxlength="15" />
+            &nbsp;&nbsp;Details:&nbsp;
+            <html:text property="mentalAnswerDetails[${i}]" size="40" maxlength="45" />
+            <br /><br />
+		</logic:iterate>
         </td>
       </tr>
-        
-        
-        
-        
-        
         
     <tr>
 		<td colspan="11"><b>Physical Health History:</b></td>
@@ -351,60 +308,50 @@
 	<tr>
 		<td colspan="8">
 			<table width="750" cellpadding="0" cellspacing="0" border="0">
-            <% 	
-		            List conditions = (ArrayList)session.getAttribute("medicalConditions");                       
-		       		  
-		              for (Iterator iterator =
-		            		  conditions.iterator(); iterator.hasNext();)
-		              {
-		       			    MedicalCondition obj = (MedicalCondition) iterator.next();
-		                    String condition = obj.getDescription();
-		           
-			%>
-				<tr>
+           
+           <logic:iterate id="loop" name="intakeForm" property="medicalConditions" indexId="i">
+   			<tr>
 					
-					<td width="150"><%=condition%></td>	
+					<td width="150"><bean:write name="loop" property="description"/></td>	
 					<td>
-						<html:select property="medicalCondition[0]" styleClass="select" >
+						<html:select property="medicalCondition[${i}]"  styleClass="select" >
 							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 					</td>
 					</tr>
-					<% if ("Hernia/Rupture".equals(condition)) { %>
-					<tr>
-					<td colspan="2" style="padding-left:20px;"><i>Which side?</i>
+					<logic:equal name="loop" property="description" value="Hernia/Rupture">
+								<tr>
+								<td colspan="2" style="padding-left:20px;"><i>Which side?</i>
+											
+									<html:select property="intake.herniaSide" styleClass="select" >
+										<html:option value="">Select</html:option>
+										<html:optionsCollection name="ddl_herniaside" value="value" label="label" />
+									</html:select>	
+								</td>
 								
-						<html:select property="intake.herniaSide" styleClass="select" >
-							<html:option value="">Select</html:option>
-							<html:optionsCollection name="ddl_herniaside" value="value" label="label" />
-						</html:select>	
-					</td>
-					
-				</tr>
-                <tr>
-                	<td colspan="2" style="padding-left:20px;"><i>Was it operated on?</i>
-							
-						<html:select property="intake.herniaOperationFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
-							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
-						</html:select>
-					</td>
-				</tr>
-                
-				<tr>
-					<td colspan="2" style="padding-left:20px;"><i>Date:</i> 
-					<html:text property="intake.herniaDate" size="30" maxlength="30" />
-				</tr>
-                <tr>
-                    <td colspan="2" style="padding-left:20px;"><i>Physician:</i> 
-                    <html:text property="intake.herniaDetails" size="30" maxlength="30" />
-                </tr>
-  
-					
-					<% } %>
+							</tr>
+			                <tr>
+			                	<td colspan="2" style="padding-left:20px;"><i>Was it operated on?</i>
+										
+									<html:select property="intake.herniaOperationFlag" styleClass="select" >
+										<html:option value="">Select</html:option>
+										<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+									</html:select>
+								</td>
+							</tr>
+			                
+							<tr>
+								<td colspan="2" style="padding-left:20px;"><i>Date:</i> 
+								<html:text property="intake.herniaDate" size="30" maxlength="30" />
+							</tr>
+			                <tr>
+			                    <td colspan="2" style="padding-left:20px;"><i>Physician:</i> 
+			                    <html:text property="intake.herniaDetails" size="30" maxlength="30" />
+			                </tr>
+  				</logic:equal>
 				
-				<% } %>
+				</logic:iterate>
 	
 	            <tr>
                      <td colspan="8 style="padding-left:50px;"><i>For any "yes" above, explain details: 
