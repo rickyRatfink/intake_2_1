@@ -7,12 +7,22 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ffarm_dev?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">admin</property>     
-    
+    <property name="hibernate.dbcp.maxIdle">10</property>
+    <property name="hibernate.dbcp.maxActive">20</property>
+    <property name="hibernate.dbcp.whenExhaustedAction">1</property>
+    <property name="hibernate.dbcp.maxWait">-1</property>
+    <property name="hibernate.dbcp.testOnBorrow">true</property>
+    <property name="hibernate.dbcp.testOnReturn">false</property>
+    <property name="hibernate.dbcp.validationQuery">select 1 from dual</property>
     <mapping resource="com/yada180/sms/hibernate/mappings/SystemUser.hbm.xml"/> 
     <mapping resource="com/yada180/sms/hibernate/mappings/Intake.hbm.xml"/> 
     <mapping resource="com/yada180/sms/hibernate/mappings/State.hbm.xml"/> 
     <mapping resource="com/yada180/sms/hibernate/mappings/Question.hbm.xml"/> 
     <mapping resource="com/yada180/sms/hibernate/mappings/MedicalCondition.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/JobSkill.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtSupervisor.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtJob.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtDepartment.hbm.xml"/>
     
   </session-factory>
 </hibernate-configuration>

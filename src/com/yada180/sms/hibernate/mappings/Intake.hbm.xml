@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Sep 16, 2013 10:14:00 AM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Sep 19, 2013 3:10:07 PM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="com.yada180.sms.domain.Intake" table="intake" catalog="ffarm_dev">
         <id name="intakeId" type="java.lang.Integer">
@@ -496,6 +496,84 @@
         </property>
         <property name="jobId" type="java.lang.Long">
             <column name="JOB_ID" />
+        </property>
+        <property name="otherBenefits" type="string">
+            <column name="other_benefits" length="100" />
+        </property>
+        <property name="aaYears" type="string">
+            <column name="aa_years" length="20" />
+        </property>
+        <property name="lawsuitDate" type="string">
+            <column name="LAWSUIT_DATE" length="20" />
+        </property>
+        <property name="currentLawsuitDate" type="string">
+            <column name="CURRENT_LAWSUIT_DATE" length="20" />
+        </property>
+        <property name="felonyQty" type="java.lang.Integer">
+            <column name="FELONY_QTY" />
+        </property>
+        <property name="needMedicationFlag" type="string">
+            <column name="NEED_MEDICATION_FLAG" length="45" />
+        </property>
+        <property name="employer1Name" type="string">
+            <column name="EMPLOYER1_NAME" length="60" />
+        </property>
+        <property name="employer2Name" type="string">
+            <column name="EMPLOYER2_NAME" length="60" />
+        </property>
+        <property name="employer3Name" type="string">
+            <column name="EMPLOYER3_NAME" length="60" />
+        </property>
+        <property name="employer1Dates" type="string">
+            <column name="EMPLOYER1_DATES" length="20" />
+        </property>
+        <property name="employer2Dates" type="string">
+            <column name="EMPLOYER2_DATES" length="20" />
+        </property>
+        <property name="employer3Dates" type="string">
+            <column name="EMPLOYER3_DATES" length="20" />
+        </property>
+        <property name="employer4Dates" type="string">
+            <column name="EMPLOYER4_DATES" length="20" />
+        </property>
+        <property name="employer1Contact" type="string">
+            <column name="EMPLOYER1_CONTACT" length="60" />
+        </property>
+        <property name="employer2Contact" type="string">
+            <column name="EMPLOYER2_CONTACT" length="60" />
+        </property>
+        <property name="employer3Contact" type="string">
+            <column name="EMPLOYER3_CONTACT" length="2060" />
+        </property>
+        <property name="employer4Contact" type="string">
+            <column name="EMPLOYER4_CONTACT" length="60" />
+        </property>
+        <property name="employer1Phone" type="string">
+            <column name="EMPLOYER1_PHONE" length="20" />
+        </property>
+        <property name="employer2Phone" type="string">
+            <column name="EMPLOYER2_PHONE" length="20" />
+        </property>
+        <property name="employer3Phone" type="string">
+            <column name="EMPLOYER3_PHONE" length="20" />
+        </property>
+        <property name="employer4Phone" type="string">
+            <column name="EMPLOYER4_PHONE" length="20" />
+        </property>
+        <property name="employer1Job" type="string">
+            <column name="EMPLOYER1_JOB" length="60" />
+        </property>
+        <property name="employer2Job" type="string">
+            <column name="EMPLOYER2_JOB" length="60" />
+        </property>
+        <property name="employer3Job" type="string">
+            <column name="EMPLOYER3_JOB" length="60" />
+        </property>
+        <property name="employer4Job" type="string">
+            <column name="EMPLOYER4_JOB" length="60" />
+        </property>
+        <property name="employer4Name" type="string">
+            <column name="EMPLOYER4_NAME" length="60" />
         </property>
     </class>
 </hibernate-mapping>

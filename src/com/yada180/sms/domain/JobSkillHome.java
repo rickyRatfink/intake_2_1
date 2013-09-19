@@ -1,6 +1,6 @@
 package com.yada180.sms.domain;
 
-// Generated Sep 18, 2013 1:34:39 PM by Hibernate Tools 3.4.0.CR1
+// Generated Sep 19, 2013 1:34:58 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -11,14 +11,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class IntakeRecordEntry.
- * @see com.yada180.sms.domain.IntakeRecordEntry
+ * Home object for domain model class JobSkill.
+ * @see com.yada180.sms.domain.JobSkill
  * @author Hibernate Tools
  */
-public class IntakeRecordEntryHome {
+public class JobSkillHome {
 
-	private static final Log log = LogFactory
-			.getLog(IntakeRecordEntryHome.class);
+	private static final Log log = LogFactory.getLog(JobSkillHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -33,8 +32,8 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public void persist(IntakeRecordEntry transientInstance) {
-		log.debug("persisting IntakeRecordEntry instance");
+	public void persist(JobSkill transientInstance) {
+		log.debug("persisting JobSkill instance");
 		try {
 			sessionFactory.getCurrentSession().persist(transientInstance);
 			log.debug("persist successful");
@@ -44,8 +43,8 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public void attachDirty(IntakeRecordEntry instance) {
-		log.debug("attaching dirty IntakeRecordEntry instance");
+	public void attachDirty(JobSkill instance) {
+		log.debug("attaching dirty JobSkill instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -55,8 +54,8 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public void attachClean(IntakeRecordEntry instance) {
-		log.debug("attaching clean IntakeRecordEntry instance");
+	public void attachClean(JobSkill instance) {
+		log.debug("attaching clean JobSkill instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -66,8 +65,8 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public void delete(IntakeRecordEntry persistentInstance) {
-		log.debug("deleting IntakeRecordEntry instance");
+	public void delete(JobSkill persistentInstance) {
+		log.debug("deleting JobSkill instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -77,11 +76,11 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public IntakeRecordEntry merge(IntakeRecordEntry detachedInstance) {
-		log.debug("merging IntakeRecordEntry instance");
+	public JobSkill merge(JobSkill detachedInstance) {
+		log.debug("merging JobSkill instance");
 		try {
-			IntakeRecordEntry result = (IntakeRecordEntry) sessionFactory
-					.getCurrentSession().merge(detachedInstance);
+			JobSkill result = (JobSkill) sessionFactory.getCurrentSession()
+					.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -90,12 +89,11 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public IntakeRecordEntry findById(int id) {
-		log.debug("getting IntakeRecordEntry instance with id: " + id);
+	public JobSkill findById(java.lang.Long id) {
+		log.debug("getting JobSkill instance with id: " + id);
 		try {
-			IntakeRecordEntry instance = (IntakeRecordEntry) sessionFactory
-					.getCurrentSession().get(
-							"com.yada180.sms.domain.IntakeRecordEntry", id);
+			JobSkill instance = (JobSkill) sessionFactory.getCurrentSession()
+					.get("com.yada180.sms.domain.JobSkill", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -108,11 +106,11 @@ public class IntakeRecordEntryHome {
 		}
 	}
 
-	public List findByExample(IntakeRecordEntry instance) {
-		log.debug("finding IntakeRecordEntry instance by example");
+	public List findByExample(JobSkill instance) {
+		log.debug("finding JobSkill instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("com.yada180.sms.domain.IntakeRecordEntry")
+					.createCriteria("com.yada180.sms.domain.JobSkill")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());

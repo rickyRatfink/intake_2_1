@@ -1,19 +1,86 @@
 package com.yada180.sms.util;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts.action.ActionForm;
+
+import com.yada180.sms.domain.CwtDepartment;
+import com.yada180.sms.domain.CwtJob;
+import com.yada180.sms.domain.CwtSupervisor;
 import com.yada180.sms.domain.DropDownItem;
 import com.yada180.sms.domain.Farm;
+import com.yada180.sms.domain.JobSkill;
+import com.yada180.sms.domain.MedicalCondition;
+import com.yada180.sms.domain.Question;
 import com.yada180.sms.domain.State;
+import com.yada180.sms.hibernate.dao.CwtDepartmentDao;
+import com.yada180.sms.hibernate.dao.CwtJobDao;
+import com.yada180.sms.hibernate.dao.CwtSupervisorDao;
+import com.yada180.sms.hibernate.dao.JobSkillDao;
 import com.yada180.sms.hibernate.dao.MedicalConditionDao;
 import com.yada180.sms.hibernate.dao.QuestionDao;
 import com.yada180.sms.hibernate.dao.StateDao;
+import com.yada180.sms.struts.form.IntakeForm;
 
 public class HtmlDropDownBuilder {
 
+	public void getQuestions(ActionForm form) {
+	      QuestionDao dao4 = new QuestionDao();
+	        List<Question> questions = new ArrayList<Question>();
+	        List<Question> healthQuestions = new ArrayList<Question>();
+	        List<Question> emotionalQuestions = new ArrayList<Question>();
+	        List<Question> physicalQuestions = new ArrayList<Question>();
+	        List<Question> mentalQuestions = new ArrayList<Question>();
+	        IntakeForm intakeForm = (IntakeForm)form;
+	        
+	        int count=0;
+	        questions=dao4.listQuestions();
+	        for (Iterator iterator =
+	    			questions.iterator(); iterator.hasNext();){
+	    			Question obj = (Question) iterator.next();
+	                
+	    			if (count<15)
+	    				healthQuestions.add(obj);
+	    			else if (count>14&&count<21)
+	    				emotionalQuestions.add(obj);
+	    			else if (count>20&&count<26)
+	    				physicalQuestions.add(obj);
+	    			else if (count>25&&count<32)
+	    				mentalQuestions.add(obj);
+	    			
+	        count++;
+	        }
+	       intakeForm.setHealthQuestions(healthQuestions);
+	       intakeForm.setEmotionalQuestions(emotionalQuestions);
+	       intakeForm.setPhysicalQuestions(physicalQuestions);
+	       intakeForm.setMentalQuestions(mentalQuestions);	       
+	       
+	       MedicalConditionDao dao5 = new MedicalConditionDao();
+	       List<MedicalCondition> medicalConditions = new ArrayList<MedicalCondition>();
+	       medicalConditions = dao5.listMedicalConditions();
+	       for (Iterator iterator =
+	    		   medicalConditions.iterator(); iterator.hasNext();){
+	    	   MedicalCondition obj = (MedicalCondition) iterator.next();	    			
+	       }
+	       intakeForm.setMedicalConditions(medicalConditions);
+	       
+	       JobSkillDao dao6 = new JobSkillDao();
+	       List<JobSkill> jobSkills = new ArrayList<JobSkill>();
+	       jobSkills = dao6.listJobSkills();
+	       for (Iterator iterator =
+	    		   jobSkills.iterator(); iterator.hasNext();){
+	    	   JobSkill obj = (JobSkill) iterator.next();	    			
+	       }
+	       intakeForm.setJobSkills(jobSkills);
+	       
+	       
+	 
+	       
+	}
 	public void refresh(HttpSession session) {
 	   	List<Farm> list = new ArrayList<Farm>();
     	list.add(new Farm(new Long(1),"BOYNTON BEACH"));
@@ -26,18 +93,22 @@ public class HtmlDropDownBuilder {
         List<State> list3 = new ArrayList<State>();
         list3=dao3.listStates();
         session.setAttribute("ddl_state", list3);
-        
-        QuestionDao dao4 = new QuestionDao();
-        List<State> questions = new ArrayList<State>();
-        questions=dao4.listQuestions();
-        session.setAttribute("questions", questions);
-        
-        MedicalConditionDao dao5 = new MedicalConditionDao();
-        List<State> medicalConditions = new ArrayList<State>();
-        medicalConditions=dao5.listMedicalConditions();
-        session.setAttribute("medicalConditions", medicalConditions);
-        System.out.println ("cond="+medicalConditions.size());
-        
+
+        CwtSupervisorDao dao4 = new CwtSupervisorDao();
+        List<CwtSupervisor> list4 = new ArrayList<CwtSupervisor>();
+        list4=dao4.listCwtSupervisors();
+        session.setAttribute("ddl_supervisor", list4);
+
+        CwtJobDao dao5 = new CwtJobDao();
+        List<CwtJob> list5 = new ArrayList<CwtJob>();
+        list4=dao5.listCwtJobs();
+        session.setAttribute("ddl_job", list5);
+
+        CwtDepartmentDao dao6 = new CwtDepartmentDao();
+        List<CwtDepartment> list6 = new ArrayList<CwtDepartment>();
+        list6=dao6.listCwtDepartments();
+        session.setAttribute("ddl_department", list6);
+
 		   List<DropDownItem> suffix = new ArrayList<DropDownItem>();
 		   suffix.add(new DropDownItem("Jr.","Jr."));
 		   suffix.add(new DropDownItem("Sr.","Sr"));

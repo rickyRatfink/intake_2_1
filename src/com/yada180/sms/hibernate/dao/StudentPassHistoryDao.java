@@ -1,0 +1,128 @@
+package com.yada180.sms.hibernate.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.yada180.sms.domain.StudentPassHistory;
+import com.yada180.sms.domain.SystemUser;
+import com.yada180.sms.hibernate.HibernateUtil;
+
+public class StudentPassHistoryDao {
+	private static SessionFactory factory;
+	private final static Logger LOGGER = Logger.getLogger(StudentPassHistoryDao.class.getName());
+	private static Session session;
+	
+	public StudentPassHistoryDao() { 
+		
+		LOGGER.setLevel(Level.INFO);
+		   
+		try{
+			session = HibernateUtil.openSession();
+			}catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+			}
+	}
+	
+	public StudentPassHistory findById(Integer id) {
+		
+		StudentPassHistory StudentPassHistory = (StudentPassHistory) session.get(StudentPassHistory.class, id);
+		
+		return StudentPassHistory;
+	}
+	
+	public List listStudentPassHistorys() {
+		LOGGER.setLevel(Level.INFO);
+	    List<StudentPassHistory> list = new ArrayList<StudentPassHistory>();
+	    Transaction tx = null;        
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            list = session.createQuery("FROM StudentPassHistory").list();                       
+        	tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+	}	
+	
+	/* Method to INSERT StudentPassHistory */
+	public Long addStudentPassHistory(StudentPassHistory obj){
+		Transaction tx = null;
+		Long key = null;
+		try{
+		tx = session.beginTransaction();
+		key = (Long) session.save(obj);
+		tx.commit();
+		}catch (HibernateException e) {
+		if (tx!=null) tx.rollback();
+		e.printStackTrace();
+		}finally {
+		session.close();
+		}
+		return key;
+		}
+	
+
+	/* Method to UPDATE StudentPassHistory */
+	public void updateStudentPassHistory(StudentPassHistory obj){
+		Transaction tx = null;
+		try{
+		tx = session.beginTransaction();
+		//StudentPassHistory StudentPassHistory =
+		//(StudentPassHistory)session.get(StudentPassHistory.class, StudentPassHistoryID);
+		//StudentPassHistory.setSalary( salary );
+		session.update(obj);
+		tx.commit();
+		}catch (HibernateException e) {
+		if (tx!=null) tx.rollback();
+		e.printStackTrace();
+		}finally {
+		session.close();
+		}
+		}
+	
+	/* Method to DELETE StudentPassHistory */
+	public void deleteStudentPassHistory(Integer key){
+		Transaction tx = null;
+		
+		try{
+			tx = session.beginTransaction();
+			StudentPassHistory obj =
+			(StudentPassHistory)session.get(StudentPassHistory.class, key);
+			session.delete(obj);
+			tx.commit();
+			}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace();
+			}finally {
+			session.close();
+			}
+			}
+
+	public List search(Integer key) {
+		
+		StringBuffer query = new StringBuffer("from StudentPassHistory");
+			query.append(" where intakeId = :intakeId ");
+		Query q = session.createQuery(query.toString());
+		q.setInteger("intakeId", key);
+		
+		List list = q.list();
+		return list;
+	}
+}
+
+

@@ -75,7 +75,7 @@
             <li><a href="<%=request.getContextPath()%>/pages/student/legal.jsp" >Legal</a></li>
             <li><a href="<%=request.getContextPath()%>/pages/student/employment.jsp" >Employment</a></li>
             <li><a href="<%=request.getContextPath()%>/pages/student/status.jsp" >Status</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/search.jsp" >Search</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=Search" >Search</a></li>
             <li><a href="<%=request.getContextPath()%>/pages/main.jsp" >Home</a></li>
         </ul>
 		<table>

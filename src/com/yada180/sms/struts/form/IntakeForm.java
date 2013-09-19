@@ -10,12 +10,40 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 
 import com.yada180.sms.domain.Intake;
+import com.yada180.sms.domain.JobSkill;
+import com.yada180.sms.domain.MedicalCondition;
+import com.yada180.sms.domain.Question;
+import com.yada180.sms.domain.StudentHistory;
+import com.yada180.sms.domain.StudentPassHistory;
+import com.yada180.sms.util.HtmlDropDownBuilder;
 
 public class IntakeForm extends ActionForm {
 
 	private Intake intake = new Intake();
 	private List<Intake> intakeList = new ArrayList<Intake>();
-
+	private List<Question> healthQuestions = new ArrayList<Question>();
+	private List<Question> emotionalQuestions = new ArrayList<Question>();
+    private List<Question> physicalQuestions = new ArrayList<Question>();
+    private List<Question> mentalQuestions = new ArrayList<Question>();
+    private List<MedicalCondition> medicalConditions = new ArrayList<MedicalCondition>();
+    private List<JobSkill> jobSkills = new ArrayList<JobSkill>();
+    private List<StudentHistory> studentHistory = new ArrayList<StudentHistory>();
+    private List<StudentPassHistory> studentPassHistory = new ArrayList<StudentPassHistory>();
+    private StudentHistory history = new StudentHistory();
+    private StudentPassHistory passHistory = new StudentPassHistory();
+    
+	public StudentHistory getHistory() {
+		return history;
+	}
+	public void setHistory(StudentHistory history) {
+		this.history = history;
+	}
+	public StudentPassHistory getPassHistory() {
+		return passHistory;
+	}
+	public void setPassHistory(StudentPassHistory passHistory) {
+		this.passHistory = passHistory;
+	}
 	private String usagePattern1 = "";
 	private String usagePattern2 = "";
 	private String usagePattern3 = "";
@@ -35,12 +63,43 @@ public class IntakeForm extends ActionForm {
 	
 	private String veteranFlag = "";
 
-	private String question[] = new String[] { "NO", "NO", "NO", "NO", "NO",
+	private String healthAnswer[] = new String[] { "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO" };
+	
+	private String emotionalAnswer[] = new String[] { "NO", "NO", "NO", "NO", "NO",
 			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
 			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
 			"NO", "NO", "NO", "NO", "NO", "NO", "NO" };
 
-	private String questionAnswerDetails[] = new String[] { "", "", "", "", "",
+	private String physicalAnswer[] = new String[] { "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO" };
+	
+	private String mentalAnswer[] = new String[] { "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO", "NO",
+			"NO", "NO", "NO", "NO", "NO", "NO", "NO" };
+	
+	private String emotionalAnswerDate[] = new String[] { "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "" };
+
+	private String emotionalAnswerDetails[] = new String[] { "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "" };
+
+	private String mentalAnswerDate[] = new String[] { "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "" };
+
+	private String mentalAnswerDetails[] = new String[] { "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+			"", "", "", "", "", "", "", "", "", "", "", "" };
+
+	private String physicalAnswerDetails[] = new String[] { "", "", "", "", "",
 			"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 			"", "", "", "", "", "", "", "", "", "", "", "" };
 
@@ -57,25 +116,73 @@ public class IntakeForm extends ActionForm {
 			"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 			"", "", "", "", "", "", "", "", "", "", "", "" };
 
+	public IntakeForm() {
+		HtmlDropDownBuilder html = new HtmlDropDownBuilder();
+		html.getQuestions(this);
+	}
 	public ActionErrors validate(ActionMapping mapping,
 			HttpServletRequest request) {
 		ActionErrors errors = new ActionErrors();
 
 		return errors;
 	}
-	
+	/*
 	private String getQuestionIndexed(int index) {
 		return question[index];
 	}
 	
 	private void setQuestionIndexed(int index, String value) {
 		question[index]=value;
-	}
+	}*/
 
+		
+	
 	public String getVeteranFlag() {
 		return veteranFlag;
 	}
 
+	public String[] getHealthAnswer() {
+		return healthAnswer;
+	}
+	public void setHealthAnswer(String[] healthAnswer) {
+		this.healthAnswer = healthAnswer;
+	}
+	public String[] getEmotionalAnswer() {
+		return emotionalAnswer;
+	}
+	public void setEmotionalAnswer(String[] emotionalAnswer) {
+		this.emotionalAnswer = emotionalAnswer;
+	}
+	public String[] getPhysicalAnswer() {
+		return physicalAnswer;
+	}
+	public void setPhysicalAnswer(String[] physicalAnswer) {
+		this.physicalAnswer = physicalAnswer;
+	}
+	public String[] getMentalAnswer() {
+		return mentalAnswer;
+	}
+	public void setMentalAnswer(String[] mentalAnswer) {
+		this.mentalAnswer = mentalAnswer;
+	}
+	public String[] getEmotionalAnswerDate() {
+		return emotionalAnswerDate;
+	}
+	public void setEmotionalAnswerDate(String[] emotionalAnswerDate) {
+		this.emotionalAnswerDate = emotionalAnswerDate;
+	}
+	public String[] getMentalAnswerDate() {
+		return mentalAnswerDate;
+	}
+	public void setMentalAnswerDate(String[] mentalAnswerDate) {
+		this.mentalAnswerDate = mentalAnswerDate;
+	}
+	public String[] getMentalAnswerDetails() {
+		return mentalAnswerDetails;
+	}
+	public void setMentalAnswerDetails(String[] mentalAnswerDetails) {
+		this.mentalAnswerDetails = mentalAnswerDetails;
+	}
 	public void setVeteranFlag(String veteranFlag) {
 		this.veteranFlag = veteranFlag;
 	}
@@ -215,23 +322,7 @@ public class IntakeForm extends ActionForm {
 	public void setUsageLosses9(String usageLosses9) {
 		this.usageLosses9 = usageLosses9;
 	}
-
-	public String[] getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(String[] question) {
-		this.question = question;
-	}
-
-	public String[] getQuestionAnswerDetails() {
-		return questionAnswerDetails;
-	}
-
-	public void setQuestionAnswerDetails(String[] questionAnswerDetails) {
-		this.questionAnswerDetails = questionAnswerDetails;
-	}
-
+	
 	public String[] getQuestionAnswerDates() {
 		return questionAnswerDates;
 	}
@@ -255,5 +346,74 @@ public class IntakeForm extends ActionForm {
 	public void setWorkExperience(String[] workExperience) {
 		this.workExperience = workExperience;
 	}
+
+	public List<Question> getHealthQuestions() {
+		return healthQuestions;
+	}
+
+	public void setHealthQuestions(List<Question> healthQuestions) {
+		this.healthQuestions = healthQuestions;
+	}
+	public List<Question> getEmotionalQuestions() {
+		return emotionalQuestions;
+	}
+	public void setEmotionalQuestions(List<Question> emotionalQuestions) {
+		this.emotionalQuestions = emotionalQuestions;
+	}
+	public List<Question> getPhysicalQuestions() {
+		return physicalQuestions;
+	}
+	public void setPhysicalQuestions(List<Question> physicalQuestions) {
+		this.physicalQuestions = physicalQuestions;
+	}
+	public List<Question> getMentalQuestions() { 
+		return mentalQuestions;
+	}
+	public void setMentalQuestions(List<Question> mentalQuestions) {
+		this.mentalQuestions = mentalQuestions;
+	}
+	public List<MedicalCondition> getMedicalConditions() {
+		return medicalConditions;
+	}
+	public void setMedicalConditions(List<MedicalCondition> medicalConditions) {
+		this.medicalConditions = medicalConditions;
+	}
+	public String[] getEmotionalAnswerDetails() {
+		return emotionalAnswerDetails;
+	}
+	public void setEmotionalAnswerDetails(String[] emotionalAnswerDetails) {
+		this.emotionalAnswerDetails = emotionalAnswerDetails;
+	}
+	public String[] getPhysicalAnswerDetails() {
+		return physicalAnswerDetails;
+	}
+	public void setPhysicalAnswerDetails(String[] physicalAnswerDetails) {
+		this.physicalAnswerDetails = physicalAnswerDetails;
+	}	
+	public String getHealthAnswerIndexed(int index) {
+		return healthAnswer[index];
+	}
+	public void setHealthAnswerIndexed(int index, String value) {
+		healthAnswer[index]=value;
+	}
+	public List<JobSkill> getJobSkills() {
+		return jobSkills;
+	}
+	public void setJobSkills(List<JobSkill> jobSkills) {
+		this.jobSkills = jobSkills;
+	}
+	public List<StudentHistory> getStudentHistory() {
+		return studentHistory;
+	}
+	public void setStudentHistory(List<StudentHistory> studentHistory) {
+		this.studentHistory = studentHistory;
+	}
+	public List<StudentPassHistory> getStudentPassHistory() {
+		return studentPassHistory;
+	}
+	public void setStudentPassHistory(List<StudentPassHistory> studentPassHistory) {
+		this.studentPassHistory = studentPassHistory;
+	}
+	
 
 }

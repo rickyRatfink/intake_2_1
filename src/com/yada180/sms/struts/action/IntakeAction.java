@@ -16,6 +16,8 @@ import org.apache.struts.action.ActionMapping;
 import com.yada180.sms.application.Constants;
 import com.yada180.sms.domain.Intake;
 import com.yada180.sms.hibernate.dao.IntakeDao;
+import com.yada180.sms.hibernate.dao.StudentHistoryDao;
+import com.yada180.sms.hibernate.dao.StudentPassHistoryDao;
 import com.yada180.sms.struts.form.IntakeForm;
 import com.yada180.sms.util.HtmlDropDownBuilder;
 
@@ -31,6 +33,8 @@ public class IntakeAction extends Action {
 		 String action=request.getParameter("action");
 		 IntakeForm intakeForm = (IntakeForm)form;
 		 IntakeDao intakeDao = new IntakeDao();
+		 StudentHistoryDao studentHistoryDao = new StudentHistoryDao();
+		 StudentPassHistoryDao studentPassHistoryDao = new StudentPassHistoryDao();
 		 
 		 if ("Search".equals(action)) {
 			 intakeForm.setIntake(new Intake());
@@ -52,19 +56,25 @@ public class IntakeAction extends Action {
 		 else if ("Edit".equals(action)) {
 			 String key = request.getParameter("key");
 			 Intake intake = intakeDao.findById(new Integer(key));
+			 List studentHistory = studentHistoryDao.search(intake.getIntakeId());
+			 List studentPassHistory = studentPassHistoryDao.search(intake.getIntakeId());
+			 //MedicalCondition
+			 //Answers to Questions
 			 intakeForm.setIntake(intake);	
+			 intakeForm.setStudentHistory(studentHistory);
+			 intakeForm.setStudentPassHistory(studentPassHistory);
 			 
 			 return mapping.findForward(Constants.EDIT);
 		 } 
 		 else if ("Save".equals(action)) {
 			 String key = request.getParameter("key");
 			 String source = request.getParameter("source");
-			 
 			 return mapping.findForward(source);
 		 }
 
 
 		 return mapping.findForward(Constants.SUCCESS);
 	}
+	
 	
 }
