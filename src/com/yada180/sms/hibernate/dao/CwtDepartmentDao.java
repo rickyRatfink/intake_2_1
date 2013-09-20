@@ -19,7 +19,7 @@ public class CwtDepartmentDao {
 	private static SessionFactory factory;
 	private final static Logger LOGGER = Logger.getLogger(CwtDepartmentDao.class.getName());
 	private static Session session;
-	
+	 
 	public CwtDepartmentDao() { 
 		
 		LOGGER.setLevel(Level.INFO);

@@ -11,7 +11,7 @@
 		<td colspan="8"><b>Substance Abuse Information: </b><br /><br /></td>
 	</tr>
 
-
+    <jsp:include page="../../includes/messages.jsp" flush="true"/>
 
 	<tr>
 		<td colspan="11"><b>Chemical Dependency (Answer all that apply):</b></td>

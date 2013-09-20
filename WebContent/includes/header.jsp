@@ -51,7 +51,7 @@
                 	<% if (user.getUsername()!=null) { %>
                         Welcome <b><%=user.getUsername() %>@<%=user.getFarmBase() %> </b>&nbsp;&nbsp;[ <a href="<%=request.getContextPath()%>/Login.do?action=logout" >Log Out</a> ]
                     <% } else { %>
-                        [ <a href="<%=request.getContextPath()%>/login" >Log In</a> ]
+                        [ <a href="<%=request.getContextPath()%>/Login.do" >Log In</a> ]
                     <% } %>
             </div>
              <div class="clear hideSkiplink">

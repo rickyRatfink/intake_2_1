@@ -32,7 +32,7 @@ public class IntakeDao {
 			}
 	}
 	
-	public Intake findById(Integer id) {
+	public Intake findById(Long id) {
 		
 		Intake Intake = (Intake) session.get(Intake.class, id);
 		
@@ -96,7 +96,7 @@ public class IntakeDao {
 		}
 	
 	/* Method to DELETE Intake */
-	public void deleteIntake(Integer key){
+	public void deleteIntake(Long key){
 		Transaction tx = null;
 		
 		try{

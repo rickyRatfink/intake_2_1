@@ -34,7 +34,7 @@
     <action-mappings>
         
          <action name="intakeForm" path="/Intake" type="com.yada180.sms.struts.action.IntakeAction" scope="session"  
-             validate="true">
+             validate="false">
                  <forward name="success" path="/pages/index.jsp" redirect="true"/>
                  <forward name="failure" path="/pages/index.jsp" redirect="true"/>
                  <forward name="error" path="/pages/error.jsp" redirect="true"/> 

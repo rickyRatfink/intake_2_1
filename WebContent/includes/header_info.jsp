@@ -68,13 +68,13 @@
     
 		<div class="menu" >	
 		<ul>
-    		<li><a href="<%=request.getContextPath()%>/pages/student/personal.jsp" >Personal</a></li>
-      		<li><a href="<%=request.getContextPath()%>/pages/student/religious.jsp" >Religious</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/substance.jsp" >Substance</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/health.jsp" >Health</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/legal.jsp" >Legal</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/employment.jsp" >Employment</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/student/status.jsp" >Status</a></li>
+    		<li><a href="<%=request.getContextPath()%>/Intake.do?action=personal" >Personal</a></li>
+      		<li><a href="<%=request.getContextPath()%>/Intake.do?action=religious" >Religious</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=substance" >Substance</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=health" >Health</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=legal" >Legal</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=employment" >Employment</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=status" >Status</a></li>
             <li><a href="<%=request.getContextPath()%>/Intake.do?action=Search" >Search</a></li>
             <li><a href="<%=request.getContextPath()%>/pages/main.jsp" >Home</a></li>
         </ul>

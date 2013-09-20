@@ -113,12 +113,12 @@ public class StudentHistoryDao {
 			}
 			}
 
-	public List search(Integer key) {
+	public List search(Long key) {
 		
 		StringBuffer query = new StringBuffer("from StudentHistory");
 			query.append(" where intakeId = :intakeId ");
 		Query q = session.createQuery(query.toString());
-		q.setInteger("intakeId", key);
+		q.setLong("intakeId", key);
 		
 		List list = q.list();
 		return list;

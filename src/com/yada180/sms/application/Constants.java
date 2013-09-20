@@ -10,4 +10,12 @@ public final class Constants {
 	public static final String RESULTS="results";
 	public static final String EDIT="edit";
 	
+	public static final String PERSONAL="personal";
+	public static final String RELIGIOUS="religious";
+	public static final String SUBSTANCE="substance";
+	public static final String HEALTH="health";
+	public static final String LEGAL="legal";
+	public static final String EMPLOYMENT="employment";
+	public static final String STATUS="status";
+	
 }

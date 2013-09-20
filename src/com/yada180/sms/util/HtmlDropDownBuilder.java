@@ -101,7 +101,7 @@ public class HtmlDropDownBuilder {
 
         CwtJobDao dao5 = new CwtJobDao();
         List<CwtJob> list5 = new ArrayList<CwtJob>();
-        list4=dao5.listCwtJobs();
+        list5=dao5.listCwtJobs();
         session.setAttribute("ddl_job", list5);
 
         CwtDepartmentDao dao6 = new CwtDepartmentDao();
@@ -115,7 +115,7 @@ public class HtmlDropDownBuilder {
 		   suffix.add(new DropDownItem("I","I"));
 		   suffix.add(new DropDownItem("II","II"));
 		   suffix.add(new DropDownItem("III","III"));
-		   session.setAttribute("ddl_suffix", list);
+		   session.setAttribute("ddl_suffix", suffix);
 		   
 		   List<DropDownItem> programStatus = new ArrayList<DropDownItem>();
 	        programStatus.add(new DropDownItem("In Program","In Program"));
@@ -129,13 +129,13 @@ public class HtmlDropDownBuilder {
 	        programStatus.add(new DropDownItem("Dismissed - Banned 60 days","Dismissed - Banned 60 days"));
 	        programStatus.add(new DropDownItem("Dismissed - Banned 90 days","Dismissed - Banned 90 days"));
 	        programStatus.add(new DropDownItem("Dismissed - Banned Perm.","Dismissed - Banned Perm."));
-	        session.setAttribute("ddl_programStatus", list);
+	        session.setAttribute("ddl_programStatus", programStatus);
 	        
 	        List<DropDownItem> phase = new ArrayList<DropDownItem>();
 	        phase.add(new DropDownItem("Phase I","Phase I"));
 	        phase.add(new DropDownItem("SLS","SLS"));
 	        phase.add(new DropDownItem("Omega","Omega"));
-	        session.setAttribute("ddl_phase", list);
+	        session.setAttribute("ddl_phase", phase);
 	        
 	        List<DropDownItem> passType = new ArrayList<DropDownItem>();
 	        passType.add(new DropDownItem("Medical","Medical"));
@@ -146,8 +146,8 @@ public class HtmlDropDownBuilder {
 	        session.setAttribute("ddl_passType", passType);
 	        
 	        List<DropDownItem> yesNo = new ArrayList<DropDownItem>();
-	        yesNo.add(new DropDownItem("YES","YES"));
 	        yesNo.add(new DropDownItem("NO","NO"));
+	        yesNo.add(new DropDownItem("YES","YES"));
 	        session.setAttribute("ddl_yesNo", yesNo);
 	        
 	        List<DropDownItem> military = new ArrayList<DropDownItem>();

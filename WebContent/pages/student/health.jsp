@@ -17,10 +17,7 @@
 		<td colspan="8"><b>Health Information: </b></td>
 	</tr>
 
-	<tr>
-    	<td colspan="8">           		
-        </td>
-    </tr> 
+	<jsp:include page="../../includes/messages.jsp" flush="true"/>
     
         
 		<logic:iterate id="loop" name="intakeForm" property="healthQuestions" indexId="i">
@@ -50,7 +47,6 @@
         </td>
         <td>
    			<html:select property="emotionalAnswer[${i}]" styleClass="select" >
-				<html:option value="">Select</html:option>
 				<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 			</html:select>
 			<br />
@@ -79,8 +75,7 @@
         <tr>
         <td>
 		Describe your current health?&nbsp;
-	 	   		            <html:select property="intake.currentHealth" styleClass="select" >
-							<html:option value="">Select</html:option>
+	 	   		        <html:select property="intake.currentHealth" styleClass="select" >
 							<html:optionsCollection name="ddl_health" value="value" label="label" />
 						</html:select>
 
@@ -89,8 +84,7 @@
          <tr>
          <td>
 		 Are you currently taking medications?&nbsp;
-	 	   		            <html:select property="intake.medicationFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+	 	   		        <html:select property="intake.medicationFlag" styleClass="select" >
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 
@@ -106,7 +100,6 @@
          <td>
 		Are you in need of medication?&nbsp;
 	 	   		            <html:select property="intake.medicationFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 
@@ -116,7 +109,6 @@
          <td>
         Do you have enough for 30 days?&nbsp;
 	 	   		            <html:select property="intake.medicationSupplyFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 
@@ -132,7 +124,6 @@
          <td> 
 			Do you have any doctor appointments in the next 30 days?&nbsp;
  	   		            <html:select property="intake.doctorApptFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 
@@ -156,7 +147,6 @@
          <td>
          <bean:write name="loop" property="question"/>&nbsp;&nbsp;
           	<html:select property="physicalAnswer[${i}]"  styleClass="select" >
-				<html:option value="">Select</html:option>
 				<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 			</html:select>
 
@@ -181,7 +171,6 @@
             <td width="300">
                 Do you wear glasses or contact lens?&nbsp;
     	   		            <html:select property="intake.eyewearFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 		&nbsp;&nbsp;&nbsp;
@@ -189,7 +178,6 @@
         <td>
 		How Often?&nbsp;
  	   		            <html:select property="intake.eyewearUsage" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_eyewear" value="value" label="label" />
 						</html:select>
 
@@ -213,7 +201,6 @@
    
            <bean:write name="loop" property="question"/>&nbsp;&nbsp;&nbsp;&nbsp;
 	            <html:select property="mentalAnswer[${i}]" styleClass="select" >
-					<html:option value="">Select</html:option>
 					<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 				</html:select>
 			<br />
@@ -233,7 +220,6 @@
 		<td colspan="8">
         Have you ever had a state claim for an industrial injury?&nbsp;&nbsp;
  	   		            <html:select property="intake.industrialInjuryFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 
@@ -272,7 +258,6 @@
         <td>
         Do you have any current physical disability?&nbsp;&nbsp;
    	   		            <html:select property="intake.disabilityFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
             </td>
@@ -315,7 +300,6 @@
 					<td width="150"><bean:write name="loop" property="description"/></td>	
 					<td>
 						<html:select property="medicalCondition[${i}]"  styleClass="select" >
-							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 					</td>
@@ -325,7 +309,6 @@
 								<td colspan="2" style="padding-left:20px;"><i>Which side?</i>
 											
 									<html:select property="intake.herniaSide" styleClass="select" >
-										<html:option value="">Select</html:option>
 										<html:optionsCollection name="ddl_herniaside" value="value" label="label" />
 									</html:select>	
 								</td>
@@ -335,7 +318,6 @@
 			                	<td colspan="2" style="padding-left:20px;"><i>Was it operated on?</i>
 										
 									<html:select property="intake.herniaOperationFlag" styleClass="select" >
-										<html:option value="">Select</html:option>
 										<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 									</html:select>
 								</td>
@@ -370,9 +352,9 @@
 	</tr>
 
     </table>
-  <input type="hidden" name="source" value="health"/>
-  <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
-   
+    
+    <html:hidden property="pageSource" value="health"/> 
+    
 </html:form>
     <div class="footer">
         

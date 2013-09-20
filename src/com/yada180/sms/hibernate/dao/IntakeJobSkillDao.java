@@ -11,16 +11,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.yada180.sms.domain.StudentPassHistory;
+import com.yada180.sms.domain.IntakeJobSkill;
 import com.yada180.sms.domain.SystemUser;
 import com.yada180.sms.hibernate.HibernateUtil;
 
-public class StudentPassHistoryDao {
+public class IntakeJobSkillDao {
 	private static SessionFactory factory;
-	private final static Logger LOGGER = Logger.getLogger(StudentPassHistoryDao.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(IntakeJobSkillDao.class.getName());
 	private static Session session;
 	
-	public StudentPassHistoryDao() { 
+	public IntakeJobSkillDao() { 
 		
 		LOGGER.setLevel(Level.INFO);
 		   
@@ -32,21 +32,40 @@ public class StudentPassHistoryDao {
 			}
 	}
 	
-	public StudentPassHistory findById(Integer id) {
+	public List findById(Long id) {
 		
-		StudentPassHistory StudentPassHistory = (StudentPassHistory) session.get(StudentPassHistory.class, id);
-		
-		return StudentPassHistory;
-	}
-	
-	public List listStudentPassHistorys() {
 		LOGGER.setLevel(Level.INFO);
-	    List<StudentPassHistory> list = new ArrayList<StudentPassHistory>();
+	    List<IntakeJobSkill> list = new ArrayList<IntakeJobSkill>();
 	    Transaction tx = null;        
         try {
             tx = session.getTransaction();
             tx.begin();
-            list = session.createQuery("FROM StudentPassHistory").list();                       
+            StringBuffer query = new StringBuffer("from IntakeJobSkill where intakeId = :intakeId ");
+    		Query q = session.createQuery(query.toString());
+    		q.setLong("intakeId", id);  
+    		list = q.list();
+        	tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+	}
+	
+	
+	
+	public List listIntakeJobSkills() {
+		LOGGER.setLevel(Level.INFO);
+	    List<IntakeJobSkill> list = new ArrayList<IntakeJobSkill>();
+	    Transaction tx = null;        
+        try {
+            tx = session.getTransaction();
+            tx.begin();
+            list = session.createQuery("FROM IntakeJobSkill").list();                       
         	tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -59,8 +78,8 @@ public class StudentPassHistoryDao {
         return list;
 	}	
 	
-	/* Method to INSERT StudentPassHistory */
-	public Long addStudentPassHistory(StudentPassHistory obj){
+	/* Method to INSERT IntakeJobSkill */
+	public Long addIntakeJobSkill(IntakeJobSkill obj){
 		Transaction tx = null;
 		Long key = null;
 		try{
@@ -77,14 +96,14 @@ public class StudentPassHistoryDao {
 		}
 	
 
-	/* Method to UPDATE StudentPassHistory */
-	public void updateStudentPassHistory(StudentPassHistory obj){
+	/* Method to UPDATE IntakeJobSkill */
+	public void updateIntakeJobSkill(IntakeJobSkill obj){
 		Transaction tx = null;
 		try{
 		tx = session.beginTransaction();
-		//StudentPassHistory StudentPassHistory =
-		//(StudentPassHistory)session.get(StudentPassHistory.class, StudentPassHistoryID);
-		//StudentPassHistory.setSalary( salary );
+		//IntakeJobSkill IntakeJobSkill =
+		//(IntakeJobSkill)session.get(IntakeJobSkill.class, IntakeJobSkillID);
+		//IntakeJobSkill.setSalary( salary );
 		session.update(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -95,14 +114,14 @@ public class StudentPassHistoryDao {
 		}
 		}
 	
-	/* Method to DELETE StudentPassHistory */
-	public void deleteStudentPassHistory(Integer key){
+	/* Method to DELETE IntakeJobSkill */
+	public void deleteIntakeJobSkill(Integer key){
 		Transaction tx = null;
 		
 		try{
 			tx = session.beginTransaction();
-			StudentPassHistory obj =
-			(StudentPassHistory)session.get(StudentPassHistory.class, key);
+			IntakeJobSkill obj =
+			(IntakeJobSkill)session.get(IntakeJobSkill.class, key);
 			session.delete(obj);
 			tx.commit();
 			}catch (HibernateException e) {
@@ -112,17 +131,7 @@ public class StudentPassHistoryDao {
 			session.close();
 			}
 			}
-
-	public List search(Long key) {
-		
-		StringBuffer query = new StringBuffer("from StudentPassHistory");
-			query.append(" where intakeId = :intakeId ");
-		Query q = session.createQuery(query.toString());
-		q.setLong("intakeId", key);
-		
-		List list = q.list();
-		return list;
-	}
+	
 }
 
 

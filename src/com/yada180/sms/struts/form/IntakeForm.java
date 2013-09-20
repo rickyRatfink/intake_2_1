@@ -3,12 +3,10 @@ package com.yada180.sms.struts.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
 
+import com.yada180.sms.domain.ErrorMessage;
 import com.yada180.sms.domain.Intake;
 import com.yada180.sms.domain.JobSkill;
 import com.yada180.sms.domain.MedicalCondition;
@@ -31,6 +29,7 @@ public class IntakeForm extends ActionForm {
     private List<StudentPassHistory> studentPassHistory = new ArrayList<StudentPassHistory>();
     private StudentHistory history = new StudentHistory();
     private StudentPassHistory passHistory = new StudentPassHistory();
+    private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
     
 	public StudentHistory getHistory() {
 		return history;
@@ -60,7 +59,14 @@ public class IntakeForm extends ActionForm {
 	private String usageLosses8 = "";
 	private String usageLosses9 = "";
 	
-	
+	private String pageSource = "";
+	private String messageType = "";
+	public String getMessageType() {
+		return messageType;
+	}
+	public void setMessageType(String messageType) {
+		this.messageType = messageType;
+	}
 	private String veteranFlag = "";
 
 	private String healthAnswer[] = new String[] { "NO", "NO", "NO", "NO", "NO",
@@ -120,12 +126,7 @@ public class IntakeForm extends ActionForm {
 		HtmlDropDownBuilder html = new HtmlDropDownBuilder();
 		html.getQuestions(this);
 	}
-	public ActionErrors validate(ActionMapping mapping,
-			HttpServletRequest request) {
-		ActionErrors errors = new ActionErrors();
-
-		return errors;
-	}
+	
 	/*
 	private String getQuestionIndexed(int index) {
 		return question[index];
@@ -413,6 +414,18 @@ public class IntakeForm extends ActionForm {
 	}
 	public void setStudentPassHistory(List<StudentPassHistory> studentPassHistory) {
 		this.studentPassHistory = studentPassHistory;
+	}
+	public String getPageSource() {
+		return pageSource;
+	}
+	public void setPageSource(String pageSource) {
+		this.pageSource = pageSource;
+	}
+	public List<ErrorMessage> getMessages() {
+		return messages;
+	}
+	public void setMessages(List<ErrorMessage> messages) {
+		this.messages = messages;
 	}
 	
 

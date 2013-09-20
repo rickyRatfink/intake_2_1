@@ -11,6 +11,9 @@
 	<tr>
 		<td colspan="8"><b>Work Experience (Check all that apply):</b><br /></td>
 	</tr>
+	
+	<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	
     <tr>
     	<td colspan="8">
     		<table width="100%">

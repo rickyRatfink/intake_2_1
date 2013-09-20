@@ -717,6 +717,10 @@ td {
 	font: 1.10em Arial;
 	color : #000000;
 }
+.status {
+	font: .95em Arial;
+	color : #000000;
+}
 .filterTxt {
 	height: 15px;
 	border:1px solid #768ca5;

@@ -23,6 +23,11 @@
     <mapping resource="com/yada180/sms/hibernate/mappings/CwtSupervisor.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/CwtJob.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/CwtDepartment.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/StudentHistory.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/StudentPassHistory.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/IntakeMedicalCondition.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/IntakeQuestionAnswer.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/IntakeJobSkill.hbm.xml"/>
     
   </session-factory>
 </hibernate-configuration>

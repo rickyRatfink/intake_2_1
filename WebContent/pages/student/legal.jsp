@@ -12,6 +12,9 @@
 	<tr>
 		<td colspan="8"><b>Legal Information:</b></td>
 	</tr>
+	
+	<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	
 		<tr>
 		<td colspan="8">Have you ever been sued?&nbsp;
    			<html:select property="intake.lawsuitFlag" styleClass="select" >

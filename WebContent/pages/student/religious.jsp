@@ -13,7 +13,7 @@
 		<td colspan="8"><b>Spiritual Information: </b><br /><br /></td>
 	</tr>
 
-    
+    <jsp:include page="../../includes/messages.jsp" flush="true"/>
 
 	<tr>
     	<td colspan="8">
@@ -32,7 +32,7 @@
     <tr>
 		<td colspan="8">Religious Background
         		<html:select property="intake.religion" styleClass="select" >
-					<html:option value="">Religion</html:option>
+					<html:option value="">Select</html:option>
 					<html:optionsCollection name="ddl_religion" value="value" label="label" />
 				</html:select> 
         </td>
@@ -43,9 +43,7 @@
   		</td>
 	</tr>
     </table>
-     <input type="hidden" name="source" value="religious"/>
-      <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
-      
+ <html:hidden property="pageSource" value="religious"/>  
 </html:form>
 
     <div class="footer">

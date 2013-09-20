@@ -41,7 +41,7 @@ function moveOnMax(field,nextFieldID){
 		<td colspan="8"><b>Personal Information: </b></td>
 	</tr>
 
-    
+    <jsp:include page="../../includes/messages.jsp" flush="true"/>
 
 	<tr>
     	<td colspan="8">
@@ -97,13 +97,13 @@ function moveOnMax(field,nextFieldID){
                 <tr>
                 <td>Address of Contact&nbsp;<html:text property="intake.address" size="30" maxlength="45"  /></td>
                 <td>City&nbsp;<html:text property="intake.city" size="20" maxlength="25"  />
-               <td>State&nbsp;
+               <td>State
                 <html:select property="intake.state" styleClass="select" >
 					<html:option value="">Select</html:option>
 					<html:optionsCollection name="ddl_state" value="value" label="label" />
 				</html:select>
-                &nbsp;&nbsp;</td>
-                <td>Zipcode&nbsp;&nbsp;<html:text property="intake.zipcode" size="20" maxlength="11" />&nbsp;&nbsp;
+                </td>
+                <td>Zipcode<html:text property="intake.zipcode" size="20" maxlength="11" />
                 </td>
                 </tr>
             </table>
@@ -146,13 +146,13 @@ function moveOnMax(field,nextFieldID){
                 <tr>
                     <td width="250">Marial Status&nbsp;
                     	<html:select property="intake.maritalStatus" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_maritalstatus" value="value" label="label" />
 						</html:select>
                     </td>
                     <td>Ethnicity
 		                 <html:select property="intake.ethnicity" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_ethnicity" value="value" label="label" />
 						</html:select>
                     </td>
@@ -169,13 +169,13 @@ function moveOnMax(field,nextFieldID){
 		<td>Weight&nbsp;<html:text property="intake.weight" size="6" /></td>
 		<td>Eyes Color&nbsp;
         		        <html:select property="intake.eyeColor" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_eyecolor" value="value" label="label" />
 						</html:select>
         </td>
 		<td>Hair Color&nbsp;
     		            <html:select property="intake.hairColor" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_haircolor" value="value" label="label" />
 						</html:select>
         </td>
@@ -192,7 +192,7 @@ function moveOnMax(field,nextFieldID){
         <td>Where do you live?
 				&nbsp;&nbsp;
     		            <html:select property="intake.homeLocation" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_living" value="value" label="label" />
 						</html:select>
 		</td>
@@ -200,7 +200,7 @@ function moveOnMax(field,nextFieldID){
         		&nbsp;
     		            <html:select property="intake.educationLevel" styleClass="select" >
 							<html:option value="">Select</html:option>
-							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+							<html:optionsCollection name="ddl_education" value="value" label="label" />
 						</html:select>
 
 		</td>		
@@ -215,18 +215,18 @@ function moveOnMax(field,nextFieldID){
         <tr>
         <td>Did you graduate?&nbsp;
      		            <html:select property="intake.graduateFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select></td>
 		<td>Read English? &nbsp;
 	   		            <html:select property="intake.englishReadingFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 		</td>
 		<td>Speak English?&nbsp;
 	   		            <html:select property="intake.englishSpeakingFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 		</td>
@@ -273,14 +273,14 @@ function moveOnMax(field,nextFieldID){
         <tr>
         <td width="220">
         <b>Are you a US Veteran?</b> &nbsp;
-	   		            <html:select property="veteranFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+	   		            <html:select property="intake.veteranStatus" styleClass="select" >
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
 		</td>
         <td>Branch of Service? &nbsp;
 	   		            <html:select property="intake.branchOfService" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_military" value="value" label="label" />
 						</html:select>
 		</td>
@@ -312,7 +312,7 @@ function moveOnMax(field,nextFieldID){
         <tr>
         <td width="260">Have a Valid Driver's License?&nbsp;&nbsp;
         		   		<html:select property="intake.dlFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
         </td>
@@ -341,13 +341,13 @@ function moveOnMax(field,nextFieldID){
         	<b>Your Family:</b>&nbsp;&nbsp;</td>
             <td width="200">Is your Mother living?
           		            <html:select property="intake.motherLivingFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
         </td>
            	<td>Is your Father living?
            		            <html:select property="intake.fatherLivingFlag" styleClass="select" >
-							<html:option value="">Select</html:option>
+							
 							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
 						</html:select>
         	</td>
@@ -422,19 +422,13 @@ function moveOnMax(field,nextFieldID){
          </table>
      </td>
      </tr>
-   
-
-	<tr>
-		<td colspan="8" valign="bottom" align="center" height="45">
-   			<input type="submit" name="action" value="Save" class="imageButtonSave" title="Save" />&nbsp;
-   		</td>
-	</tr>
-
-	</table>
-     <input type="hidden" name="source" value="personal"/>
-     <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
-      
-      
+    </table>
+    <br/><br/>
+	<div align="center">
+		<input type="submit" name="action" value="Save" class="imageButtonSave" title="Save" />
+	</div>   			
+       
+    <html:hidden property="pageSource" value="personal"/>  
       
 </html:form>
   </div>
