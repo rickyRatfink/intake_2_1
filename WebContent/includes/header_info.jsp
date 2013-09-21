@@ -1,23 +1,17 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ page import="com.yada180.sms.domain.SystemUser" %>
-<%@ page import="com.yada180.sms.struts.form.IntakeForm" %>
-<%@ page import="com.yada180.sms.util.Validator" %>
 
 <%  
     SystemUser user = null;
-	Validator v8r = new Validator();
 	try {
 	  user = (SystemUser)session.getAttribute("system_user"); 
 	  if (user==null) user = new SystemUser();
 	} catch (Exception e) {
 		user=new SystemUser();
 	}
-	
-	String updateFlag = (String)request.getAttribute("updateFlag");
-	if (updateFlag==null) updateFlag=request.getParameter("updateFlag");
+
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -81,7 +75,7 @@
 		<table>
     	<tr>
     		 <td width="33"></td>
-		     <td><font style="color:#FFFFFF"><b>Student Name:</b>&nbsp;<font style="color:#aeadad"><bean:write name="intakeForm" property="intake.firstName" />&nbsp;<bean:write name="intakeForm" property="intake.lastName" /></font>
+		     <td><font style="color:#FFFFFF"><b>Student Name:</b>&nbsp;<font style="color:#aeadad"><bean:write name="intakeForm" property="intake.firstname" />&nbsp;<bean:write name="intakeForm" property="intake.lastname" /></font>
 		     &nbsp;&nbsp;&nbsp;
 		     <font style="color:#FFFFFF"><b>SSN:</b>&nbsp;<font style="color:#aeadad"><bean:write name="intakeForm" property="intake.ssn" /></font>
 		     &nbsp;&nbsp;&nbsp;
@@ -109,8 +103,19 @@
 		     <a href="<%=request.getContextPath()%>/pages/student/card.jsp" style="color:#19fd01"><b>Print Card</b></a>
 		     &nbsp;&nbsp;&nbsp;
 		     <a href="<%=request.getContextPath()%>/pages/student/card.jsp" style="color:#19fd01""><b>Print Student Information</b></a>
-		     &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/intake?action=Admit&id=" style="color:#19fd01"><b>Admit To Program</b></a>
-		     &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/intake?action=Deny&id=" style="color:#19fd01"><b>Deny Admission</b></a>
+		     
+		     <logic:equal name="intakeForm" property="intake.applicationStatus" value="Accepted">
+		     	&nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/Intake.do?action=Admit" style="color:#19fd01"><b>Admit To Program</b></a>
+		     </logic:equal>
+		     <logic:equal name="intakeForm" property="intake.applicationStatus" value="Pending">
+		        &nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/Intake.do?action=Accept" style="color:#19fd01"><b>Accept Application</b></a>
+		     </logic:equal>
+		     <logic:equal name="intakeForm" property="intake.applicationStatus" value="Pending">
+		    	&nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/Intake.do?action=Deny" style="color:#19fd01"><b>Deny Application</b></a>
+		     </logic:equal>
+		     <logic:equal name="intakeForm" property="intake.applicationStatus" value="Denied">
+		    	&nbsp;&nbsp;&nbsp;<a href="<%=request.getContextPath()%>/Intake.do?action=Reinstate" style="color:#19fd01"><b>Reinstate Application</b></a>
+		     </logic:equal>
 		     </td>
 		     
     	</tr>
@@ -123,3 +128,4 @@
             </div>
         </div>
         <div class="main">
+       

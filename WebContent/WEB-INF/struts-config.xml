@@ -49,7 +49,9 @@
                  <forward name="legal" path="/pages/student/legal.jsp" redirect="true"/>     
                  <forward name="employment" path="/pages/student/employment.jsp" redirect="true"/>
                  <forward name="status" path="/pages/student/status.jsp" redirect="true"/>   
-                 <forward name="photo" path="/pages/student/photo.jsp" redirect="true"/>                    
+                 <forward name="photo" path="/pages/student/photo.jsp" redirect="true"/> 
+                 <forward name="applications" path="/pages/applications/results.jsp" redirect="true"/> 
+                 <forward name="searchapps" path="/pages/applications/search.jsp" redirect="true"/>                    
          </action>
        
     </action-mappings>

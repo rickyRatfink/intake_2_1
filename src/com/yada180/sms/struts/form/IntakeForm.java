@@ -11,6 +11,7 @@ import com.yada180.sms.domain.Intake;
 import com.yada180.sms.domain.JobSkill;
 import com.yada180.sms.domain.MedicalCondition;
 import com.yada180.sms.domain.Question;
+import com.yada180.sms.domain.SearchParameter;
 import com.yada180.sms.domain.StudentHistory;
 import com.yada180.sms.domain.StudentPassHistory;
 import com.yada180.sms.util.HtmlDropDownBuilder;
@@ -19,6 +20,7 @@ public class IntakeForm extends ActionForm {
 
 	private Intake intake = new Intake();
 	private List<Intake> intakeList = new ArrayList<Intake>();
+	private List<Intake> applicantList = new ArrayList<Intake>();
 	private List<Question> healthQuestions = new ArrayList<Question>();
 	private List<Question> emotionalQuestions = new ArrayList<Question>();
     private List<Question> physicalQuestions = new ArrayList<Question>();
@@ -31,6 +33,7 @@ public class IntakeForm extends ActionForm {
     private StudentPassHistory passHistory = new StudentPassHistory();
     private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
     private StudentHistory currentStatus = new StudentHistory();
+    private SearchParameter searchParameter = new SearchParameter();
     
     private Long deleteId;
     private FormFile imageFile;
@@ -449,5 +452,18 @@ public class IntakeForm extends ActionForm {
 	public void setImageFile(FormFile imageFile) {
 		this.imageFile = imageFile;
 	}
+	public SearchParameter getSearchParameter() {
+		return searchParameter;
+	}
+	public void setSearchParameter(SearchParameter searchParameter) {
+		this.searchParameter = searchParameter;
+	}
+	public List<Intake> getApplicantList() {
+		return applicantList;
+	}
+	public void setApplicantList(List<Intake> applicantList) {
+		this.applicantList = applicantList;
+	}
+	
 
 }

@@ -115,19 +115,21 @@ public class IntakeDao {
 
 	public List search(String entryDate, String exitDate, String lastname, 
 			String firstname, String ssn, 
-			String dob, String farm) {
+			String dob, String status, String farm) {
 		
-		StringBuffer query = new StringBuffer("from Intake");
+		StringBuffer query = new StringBuffer("from Intake where 1=1 ");
 		if (lastname!=null&&lastname.length()>0)
-			query.append(" where lastname = :lastname ");
+			query.append(" and lastname = :lastname ");
 		if (firstname!=null&&firstname.length()>0)
-			query.append(" where firstname = :firstname ");
+			query.append(" and firstname = :firstname ");
 		if (ssn!=null&&ssn.length()>0)
-			query.append(" where ssn = :ssn ");
+			query.append(" and ssn = :ssn ");
 		if (dob!=null&&dob.length()>0)
-			query.append(" where dob = :dob ");
+			query.append(" and dob = :dob ");
+		if (status!=null&&status.length()>0)
+			query.append(" and applicationStatus = :applicationStatus ");
 		if (farm!=null&&farm.length()>0&&!farm.equals("ALL"))
-			query.append(" where farmBase = :farmBase ");
+			query.append(" and farmBase = :farmBase ");
 		
 		Query q = session.createQuery(query.toString());
 		
@@ -139,6 +141,8 @@ public class IntakeDao {
 			q.setString("ssn", ssn);
 		if (dob!=null&&dob.length()>0)
 			q.setString("dob", dob);
+		if (status!=null&&status.length()>0)
+			q.setString("applicationStatus", status);
 		if (farm!=null&&farm.length()>0&&!farm.equals("ALL"))
 			q.setString("farmBase", farm);
 		

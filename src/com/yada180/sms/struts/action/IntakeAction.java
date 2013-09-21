@@ -1,24 +1,15 @@
 package com.yada180.sms.struts.action;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -33,6 +24,7 @@ import com.yada180.sms.domain.IntakeMedicalCondition;
 import com.yada180.sms.domain.IntakeQuestionAnswer;
 import com.yada180.sms.domain.JobSkill;
 import com.yada180.sms.domain.MedicalCondition;
+import com.yada180.sms.domain.SearchParameter;
 import com.yada180.sms.domain.StudentHistory;
 import com.yada180.sms.domain.StudentPassHistory;
 import com.yada180.sms.domain.SystemUser;
@@ -100,12 +92,73 @@ public class IntakeAction extends Action {
 			 String ssn=intakeForm.getIntake().getSsn();
 			 String dob=intakeForm.getIntake().getDob();
 			 String farm=intakeForm.getIntake().getFarmBase();
-			 List intakeList = intakeDao.search(entryDate, exitDate, lastname,firstname,ssn,dob,farm);
+			 List intakeList = intakeDao.search(entryDate, exitDate, lastname,firstname,ssn,dob,null,farm);
 			 intakeForm.setIntakeList(intakeList);
 			 
 			 return mapping.findForward(Constants.RESULTS);
 		 }
-		 else if ("Create".equals(action)) {
+		 else if ("SearchApps".equals(action)) {
+			 intakeForm.setSearchParameter(new SearchParameter());
+			 return mapping.findForward(Constants.SEARCH_APPLICATIONS);
+		 }
+		 else if ("Search Applications".equals(action)) {
+			 List intakeList = intakeDao.search(intakeForm.getSearchParameter().getBeginDate(), 
+					 intakeForm.getSearchParameter().getEndDate(), 
+					 intakeForm.getSearchParameter().getLastname(),
+					 intakeForm.getSearchParameter().getFirstname(),
+					 intakeForm.getSearchParameter().getSsn(),
+					 intakeForm.getSearchParameter().getDob(),
+					 intakeForm.getSearchParameter().getApplicationStatus(),
+					 intakeForm.getSearchParameter().getFarmBase());
+			 intakeForm.setApplicantList(intakeList);
+			 return mapping.findForward(Constants.APPLICATIONS);
+		 }
+		 else if ("Admit".equals(action)) {
+			 String entryDate = validator.convertEpoch(validator.getEpoch());
+			 
+			 intakeForm.getIntake().setApplicationStatus("In Program");
+			 intakeForm.getIntake().setClass_("Orientation");
+			 intakeForm.getIntake().setLastUpdatedDate(validator.getEpoch()+"");
+			 intakeForm.getIntake().setLastUpdatedBy(user.getUsername());
+			 intakeForm.getIntake().setFarmBase(user.getFarmBase());
+			 intakeForm.getIntake().setEntryDate(entryDate);
+			 intakeDao.updateIntake(intakeForm.getIntake());
+			 
+			 //create history record
+			 StudentHistory history = new StudentHistory();
+			 history.setBeginDate(entryDate);
+			 history.setFarm(user.getFarmBase());
+			 history.setPhase("Phase I");
+			 history.setProgramStatus("In Program");
+			 history.setCreatedBy(user.getUsername());
+			 history.setCreationDate(validator.getEpoch()+"");
+			 history.setIntakeId(intakeForm.getIntake().getIntakeId());
+			 
+			 studentHistoryDao.addStudentHistory(history);
+			 return mapping.findForward(Constants.PERSONAL);
+		 }
+		 else if ("Accept".equals(action)) {
+			 intakeForm.getIntake().setApplicationStatus("Accepted");
+			 intakeForm.getIntake().setLastUpdatedDate(validator.getEpoch()+"");
+			 intakeForm.getIntake().setLastUpdatedBy(user.getUsername());
+			 intakeDao.updateIntake(intakeForm.getIntake());
+			 return mapping.findForward(Constants.PERSONAL);
+		 }
+		 else if ("Deny".equals(action)) {
+			 intakeForm.getIntake().setApplicationStatus("Denied");
+			 intakeForm.getIntake().setLastUpdatedDate(validator.getEpoch()+"");
+			 intakeForm.getIntake().setLastUpdatedBy(user.getUsername());
+			 intakeDao.updateIntake(intakeForm.getIntake());
+			 return mapping.findForward(Constants.PERSONAL);
+		 }
+		 else if ("Reinstate".equals(action)) {
+			 intakeForm.getIntake().setApplicationStatus("Pending");
+			 intakeForm.getIntake().setLastUpdatedDate(validator.getEpoch()+"");
+			 intakeForm.getIntake().setLastUpdatedBy(user.getUsername());
+			 intakeDao.updateIntake(intakeForm.getIntake());
+			 return mapping.findForward(Constants.PERSONAL);
+		 }
+ 		 else if ("Create".equals(action)) {
 			 this.clearForm(intakeForm);
 			 return mapping.findForward(Constants.PERSONAL);
 		 }

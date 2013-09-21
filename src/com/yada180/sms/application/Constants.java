@@ -19,4 +19,6 @@ public final class Constants {
 	public static final String STATUS="status";
 	public static final String HOME="home";
 	public static final String PHOTO="photo";
+	public static final String APPLICATIONS="applications";
+	public static final String SEARCH_APPLICATIONS="searchapps";
 }

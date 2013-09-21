@@ -130,7 +130,13 @@ public class HtmlDropDownBuilder {
 	        programStatus.add(new DropDownItem("Dismissed - Banned 90 days","Dismissed - Banned 90 days"));
 	        programStatus.add(new DropDownItem("Dismissed - Banned Perm.","Dismissed - Banned Perm."));
 	        session.setAttribute("ddl_programStatus", programStatus);
-	        
+
+	        List<DropDownItem> applicationStatus = new ArrayList<DropDownItem>();
+	        applicationStatus.add(new DropDownItem("Pending","Pending"));
+	        applicationStatus.add(new DropDownItem("Denied","Denied"));
+	        applicationStatus.add(new DropDownItem("Accepted","Accepted"));
+	        session.setAttribute("ddl_applicationStatus", applicationStatus);
+
 	        List<DropDownItem> phase = new ArrayList<DropDownItem>();
 	        phase.add(new DropDownItem("Phase I","Phase I"));
 	        phase.add(new DropDownItem("SLS","SLS"));
