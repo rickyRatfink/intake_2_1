@@ -3,8 +3,8 @@ package com.yada180.sms.struts.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.upload.FormFile;
 
 import com.yada180.sms.domain.ErrorMessage;
 import com.yada180.sms.domain.Intake;
@@ -30,19 +30,11 @@ public class IntakeForm extends ActionForm {
     private StudentHistory history = new StudentHistory();
     private StudentPassHistory passHistory = new StudentPassHistory();
     private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
+    private StudentHistory currentStatus = new StudentHistory();
     
-	public StudentHistory getHistory() {
-		return history;
-	}
-	public void setHistory(StudentHistory history) {
-		this.history = history;
-	}
-	public StudentPassHistory getPassHistory() {
-		return passHistory;
-	}
-	public void setPassHistory(StudentPassHistory passHistory) {
-		this.passHistory = passHistory;
-	}
+    private Long deleteId;
+    private FormFile imageFile;
+    
 	private String usagePattern1 = "";
 	private String usagePattern2 = "";
 	private String usagePattern3 = "";
@@ -427,6 +419,35 @@ public class IntakeForm extends ActionForm {
 	public void setMessages(List<ErrorMessage> messages) {
 		this.messages = messages;
 	}
-	
+	public StudentHistory getHistory() {
+		return history;
+	}
+	public void setHistory(StudentHistory history) {
+		this.history = history;
+	}
+	public StudentPassHistory getPassHistory() {
+		return passHistory;
+	}
+	public void setPassHistory(StudentPassHistory passHistory) {
+		this.passHistory = passHistory;
+	}
+	public Long getDeleteId() {
+		return deleteId;
+	}
+	public void setDeleteId(Long deleteId) {
+		this.deleteId = deleteId;
+	}
+	public StudentHistory getCurrentStatus() {
+		return currentStatus;
+	}
+	public void setCurrentStatus(StudentHistory currentStatus) {
+		this.currentStatus = currentStatus;
+	}
+	public FormFile getImageFile() {
+		return imageFile;
+	}
+	public void setImageFile(FormFile imageFile) {
+		this.imageFile = imageFile;
+	}
 
 }

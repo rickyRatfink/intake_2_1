@@ -13,7 +13,11 @@
 		<td colspan="8"><b>Spiritual Information: </b><br /><br /></td>
 	</tr>
 
-    <jsp:include page="../../includes/messages.jsp" flush="true"/>
+ 	<tr>
+		<td colspan="11">
+    		<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	   </td>
+	</tr>
 
 	<tr>
     	<td colspan="8">

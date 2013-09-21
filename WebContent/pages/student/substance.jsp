@@ -11,8 +11,12 @@
 		<td colspan="8"><b>Substance Abuse Information: </b><br /><br /></td>
 	</tr>
 
-    <jsp:include page="../../includes/messages.jsp" flush="true"/>
-
+	<tr>
+		<td colspan="11">
+    		<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	   </td>
+	</tr>
+	
 	<tr>
 		<td colspan="11"><b>Chemical Dependency (Answer all that apply):</b></td>
 	</tr>
@@ -38,7 +42,7 @@
 						<html:text property="intake.alcoholYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.alcoholLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.alcoholLastUsed" size="20" maxlength="15" />
 					</td>
 				</tr>
 				<tr>
@@ -49,7 +53,7 @@
 						<html:text property="intake.cocaineYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.cocaineLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.cocaineLastUsed" size="20" maxlength="15" />
 					</td>
 				</tr>
 				<tr>
@@ -60,7 +64,7 @@
 						<html:text property="intake.marijuanaYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.marijuanaLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.marijuanaLastUsed" size="20" maxlength="15" />
 					</td>				</tr>
 				<tr>
 					<td width="124">
@@ -70,7 +74,7 @@
 						<html:text property="intake.oxycodoneYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.oxycodoneLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.oxycodoneLastUsed" size="20" maxlength="15" />
 					</td>				</tr>
 				<tr>
 					<td width="124">
@@ -80,7 +84,7 @@
 						<html:text property="intake.speedYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.speedLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.speedLastUsed" size="20" maxlength="15" />
 					</td>				</tr>
 				<tr>
 					<td width="124">
@@ -90,7 +94,7 @@
 						<html:text property="intake.heroinYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.heroinLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.heroinLastUsed" size="20" maxlength="15" />
 					</td>				</tr>
                 <tr>
 					<td width="124">
@@ -100,7 +104,7 @@
 						<html:text property="intake.xanaxYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.xanaxLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.xanaxLastUsed" size="20" maxlength="15" />
 					</td>				</tr>
 				<tr>
 					<td width="124">
@@ -110,7 +114,7 @@
 						<html:text property="intake.otherYearsUsed" size="13" maxlength="2" />
 					</td>
 					<td>
-						<html:text property="intake.otherLastUsed" size="13" maxlength="2" />
+						<html:text property="intake.otherLastUsed" size="20" maxlength="15" />
 					</td>				
 				</tr>
 			</table>
@@ -221,9 +225,7 @@
    		</td>
 	</tr>
     </table>
-    <input type="hidden" name="source" value="substance"/>
-    <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
-     
+  <html:hidden property="pageSource" value="substance"/>     
 </html:form>
 
 <br /><br />

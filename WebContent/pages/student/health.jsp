@@ -17,7 +17,11 @@
 		<td colspan="8"><b>Health Information: </b></td>
 	</tr>
 
-	<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	<tr>
+		<td colspan="11">
+    		<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	   </td>
+	</tr>
     
         
 		<logic:iterate id="loop" name="intakeForm" property="healthQuestions" indexId="i">
@@ -76,6 +80,7 @@
         <td>
 		Describe your current health?&nbsp;
 	 	   		        <html:select property="intake.currentHealth" styleClass="select" >
+	 	   		        	<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_health" value="value" label="label" />
 						</html:select>
 
@@ -178,6 +183,7 @@
         <td>
 		How Often?&nbsp;
  	   		            <html:select property="intake.eyewearUsage" styleClass="select" >
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_eyewear" value="value" label="label" />
 						</html:select>
 
@@ -309,6 +315,7 @@
 								<td colspan="2" style="padding-left:20px;"><i>Which side?</i>
 											
 									<html:select property="intake.herniaSide" styleClass="select" >
+										<html:option value="">Select</html:option>
 										<html:optionsCollection name="ddl_herniaside" value="value" label="label" />
 									</html:select>	
 								</td>

@@ -76,7 +76,7 @@
             <li><a href="<%=request.getContextPath()%>/Intake.do?action=employment" >Employment</a></li>
             <li><a href="<%=request.getContextPath()%>/Intake.do?action=status" >Status</a></li>
             <li><a href="<%=request.getContextPath()%>/Intake.do?action=Search" >Search</a></li>
-            <li><a href="<%=request.getContextPath()%>/pages/main.jsp" >Home</a></li>
+            <li><a href="<%=request.getContextPath()%>/Intake.do?action=Home" >Home</a></li>
         </ul>
 		<table>
     	<tr>

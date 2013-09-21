@@ -38,6 +38,8 @@ public class IntakeQuestionAnswerDao {
 	    List<IntakeQuestionAnswer> list = new ArrayList<IntakeQuestionAnswer>();
 	    Transaction tx = null;        
         try {
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
             tx = session.getTransaction();
             tx.begin();
             StringBuffer query = new StringBuffer("from IntakeQuestionAnswer where intakeId = :intakeId ");
@@ -63,6 +65,8 @@ public class IntakeQuestionAnswerDao {
 	    List<IntakeQuestionAnswer> list = new ArrayList<IntakeQuestionAnswer>();
 	    Transaction tx = null;        
         try {
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
             tx = session.getTransaction();
             tx.begin();
             list = session.createQuery("FROM IntakeQuestionAnswer").list();                       
@@ -83,6 +87,8 @@ public class IntakeQuestionAnswerDao {
 		Transaction tx = null;
 		Long key = null;
 		try{
+		if (!session.isOpen())
+				session = HibernateUtil.openSession();
 		tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
@@ -100,6 +106,8 @@ public class IntakeQuestionAnswerDao {
 	public void updateIntakeQuestionAnswer(IntakeQuestionAnswer obj){
 		Transaction tx = null;
 		try{
+		if (!session.isOpen())
+			session = HibernateUtil.openSession();
 		tx = session.beginTransaction();
 		//IntakeQuestionAnswer IntakeQuestionAnswer =
 		//(IntakeQuestionAnswer)session.get(IntakeQuestionAnswer.class, IntakeQuestionAnswerID);
@@ -115,10 +123,12 @@ public class IntakeQuestionAnswerDao {
 		}
 	
 	/* Method to DELETE IntakeQuestionAnswer */
-	public void deleteIntakeQuestionAnswer(Integer key){
+	public void deleteIntakeQuestionAnswer(Long key){
 		Transaction tx = null;
 		
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
 			IntakeQuestionAnswer obj =
 			(IntakeQuestionAnswer)session.get(IntakeQuestionAnswer.class, key);

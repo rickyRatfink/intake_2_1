@@ -11,8 +11,8 @@
         <property name="jobSkillId" type="long">
             <column name="JOB_SKILL_ID" not-null="true" />
         </property>
-        <property name="intakeId" type="string">
-            <column name="INTAKE_ID" length="45" />
+        <property name="intakeId" type="long">
+            <column name="INTAKE_ID" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

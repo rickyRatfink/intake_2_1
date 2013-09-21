@@ -95,8 +95,7 @@
 
     </table>
 
-<input type="hidden" name="source" value="employment"/>
- <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
+ <html:hidden property="pageSource" value="employment"/>  
 </html:form>
     <div class="footer">
         

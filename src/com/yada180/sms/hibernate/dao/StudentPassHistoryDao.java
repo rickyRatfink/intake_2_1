@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.yada180.sms.domain.IntakeJobSkill;
 import com.yada180.sms.domain.StudentPassHistory;
 import com.yada180.sms.domain.SystemUser;
 import com.yada180.sms.hibernate.HibernateUtil;
@@ -32,19 +33,49 @@ public class StudentPassHistoryDao {
 			}
 	}
 	
-	public StudentPassHistory findById(Integer id) {
+	public StudentPassHistory findById(Long id) {
 		
 		StudentPassHistory StudentPassHistory = (StudentPassHistory) session.get(StudentPassHistory.class, id);
 		
 		return StudentPassHistory;
 	}
 	
+	public List findByIntakeId(Long id) {
+
+		LOGGER.setLevel(Level.INFO);
+		List<IntakeJobSkill> list = new ArrayList<IntakeJobSkill>();
+		Transaction tx = null;
+		try {
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
+			tx.begin();
+			StringBuffer query = new StringBuffer(
+					"from StudentPassHistory where intakeId = :intakeId ");
+			Query q = session.createQuery(query.toString());
+			q.setLong("intakeId", id);
+			list = q.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+	
+	
 	public List listStudentPassHistorys() {
 		LOGGER.setLevel(Level.INFO);
 	    List<StudentPassHistory> list = new ArrayList<StudentPassHistory>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM StudentPassHistory").list();                       
         	tx.commit();
@@ -64,7 +95,9 @@ public class StudentPassHistoryDao {
 		Transaction tx = null;
 		Long key = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -81,7 +114,9 @@ public class StudentPassHistoryDao {
 	public void updateStudentPassHistory(StudentPassHistory obj){
 		Transaction tx = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		//StudentPassHistory StudentPassHistory =
 		//(StudentPassHistory)session.get(StudentPassHistory.class, StudentPassHistoryID);
 		//StudentPassHistory.setSalary( salary );
@@ -96,10 +131,12 @@ public class StudentPassHistoryDao {
 		}
 	
 	/* Method to DELETE StudentPassHistory */
-	public void deleteStudentPassHistory(Integer key){
+	public void deleteStudentPassHistory(Long key){
 		Transaction tx = null;
 		
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
 			StudentPassHistory obj =
 			(StudentPassHistory)session.get(StudentPassHistory.class, key);

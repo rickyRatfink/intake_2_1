@@ -11,7 +11,11 @@
 		<td width="100%" colspan="2"><b>Student Status: </b><br /><br /></td>
 	</tr>
 	
-	<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	<tr>
+		<td colspan="11">
+    		<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	   </td>
+	</tr>
 	
     <tr>
     	<td valign="top">
@@ -22,6 +26,7 @@
             <tr>
             	<td>
                       <html:select property="intake.supervisorId" styleClass="status"> 
+                      	<html:option value="">Select</html:option>
 						<html:optionsCollection name="ddl_supervisor" value="supervisorId" label="firstname" />
 					  </html:select>
 
@@ -33,6 +38,7 @@
             <tr>
             	<td>
                     <html:select property="intake.jobId" styleClass="status"> 
+                    	<html:option value="">Select</html:option>
 						<html:optionsCollection name="ddl_job" value="jobId" label="title" />
 					</html:select>
 
@@ -52,6 +58,7 @@
             <tr>
             	<td>
             		<html:select property="intake.departmentId" styleClass="status"> 
+            			<html:option value="">Select</html:option>
 						<html:optionsCollection name="ddl_department" value="departmentId" label="title" />
 					</html:select>
             	</td>
@@ -81,11 +88,14 @@
             	</td>
             </tr>
             <tr>
-            	<td>(This is the date they LAST ENTERED the program.  Please check the Student Status History for original entry date.)</td>
+            	<td>(This is the date they LAST ENTERED the program.  Please check the Student Status History for original entry date.)<br/><br/></td>
             </tr>
             <tr>
             	<td>Archived
-            	   <html:text property="intake.archivedFlag" value="YES"/> 
+            	   <html:select property="intake.archivedFlag" styleClass="select" >
+							<html:optionsCollection name="ddl_yesNo" value="value" label="label" />
+				   </html:select>
+            	   
             	</td>
             </tr>
             <tr>
@@ -104,17 +114,15 @@
                 <td width="100"><b>Date Began</b></td>
                 <td width=""><b>Date Ended</b></td>
             </tr>
-            <logic:iterate id="loop" name="intakeForm" property="studentHistory" indexId="i">
-            <tr>
-            	<td><bean:write name="loop" property="farm"/></td>
-            	<td><bean:write name="loop" property="phase"/></td>
-            	<td><bean:write name="loop" property="programStatus"/></td>
-            	<td><bean:write name="loop" property="reason"/></td>
-            	<td><bean:write name="loop" property="beginDate" /></td>
-            	<td><bean:write name="loop" property="endDate" /></td>
+           <tr>
+            	<td><bean:write name="intakeForm" property="currentStatus.farm"/></td>
+            	<td><bean:write name="intakeForm" property="currentStatus.phase"/></td>
+            	<td><bean:write name="intakeForm" property="currentStatus.programStatus"/></td>
+            	<td><bean:write name="intakeForm" property="currentStatus.reason"/></td>
+            	<td><bean:write name="intakeForm" property="currentStatus.beginDate" /></td>
+            	<td><bean:write name="intakeForm" property="currentStatus.endDate" /></td>
             </tr>
-        	</logic:iterate>
-        	<logic:empty name="intakeForm" property="studentHistory">
+        	<logic:empty name="intakeForm" property="currentStatus">
                      <tr>
                      	<td colspan="6">No Status</td> 
                      </tr>
@@ -131,19 +139,22 @@
             <tr style="background: silver; text-align: left;">
             	<td valign="top">                     
                 	<html:select property="history.farm" styleClass="status"> 
+						<html:option value="">Select</html:option>
 						<html:optionsCollection name="ddl_farm" value="name" label="name" />
 					</html:select>
 					&nbsp;&nbsp;
                 </td>
                 <td valign="top">                     
                 	<html:select property="history.phase" styleClass="status"> 
+						<html:option value="">Select</html:option>
 						<html:optionsCollection name="ddl_phase" value="value" label="label" />
 					</html:select>
                 &nbsp;&nbsp;
                 </td>
                 <td valign="top" colspan="2"> 
                     <html:select property="history.programStatus" styleClass="status" > 
-						<html:optionsCollection name="ddl_programStatus" value="value" label="label" />/>
+						<html:option value="">Select</html:option>
+						<html:optionsCollection name="ddl_programStatus" value="value" label="label" />
 					</html:select>
                 
                 &nbsp;&nbsp;
@@ -215,26 +226,28 @@
                                 <html:text property="passHistory.hours" size="3" maxlength="3"/>
                 		</td>
                         <td colspan="2" style="background: silver;height:20px;border: 1px solid #666;color:#000000;font-weight:bold;padding-left:5px;">
-                               <html:select property="passHistory.passType" > 
+                               <html:select property="passHistory.passType" >
+                               		<html:option value="">Select</html:option> 
 									<html:optionsCollection name="ddl_passType" value="value"  label="label" />
 								</html:select>  
 						</td>
                         
                      </tr>
-                     <logic:iterate id="loop" name="intakeForm" property="studentPassHistory" indexId="i">
-                     <tr> 
-                     	<td><bean:write name="loop" property="passDate"/></td>
-                        <td><bean:write name="loop" property="hours"/></td>
-                        <td><bean:write name="loop" property="passType"/></td> 
-                        <td><input type="submit" name="action" value="Delete Pass History" onClick="javascript:document.getElementById('deleteId').value='<bean:write name="loop" property="studentPassHistoryId"/>'" class="imageButtonDelete"/></td>
-                     </tr>
-                     </logic:iterate>
-                      
-                     <logic:empty name="intakeForm" property="studentPassHistory">
-                     <tr>
-                     	<td colspan="7">No history</td> 
-                     </tr>
-                     </logic:empty>
+                     <logic:notEmpty name="intakeForm" property="studentPassHistory">
+	                     <logic:iterate id="loop" name="intakeForm" property="studentPassHistory" indexId="i">
+	                     <tr> 
+	                     	<td><bean:write name="loop" property="passDate"/></td>
+	                        <td><bean:write name="loop" property="hours"/></td>
+	                        <td><bean:write name="loop" property="passType"/></td> 
+	                        <td><input type="submit" name="action" value="Delete Pass History" onClick="javascript:document.getElementById('deleteId').value='<bean:write name="loop" property="studentPassHistoryId"/>'" class="imageButtonDelete"/></td>
+	                     </tr>
+	                     </logic:iterate>
+	                  </logic:notEmpty>    
+	                  <logic:empty name="intakeForm" property="studentPassHistory">
+	                     <tr>
+	                     	<td colspan="7">No history</td> 
+	                     </tr>
+	                  </logic:empty>
                     
                 </table>
                 
@@ -255,9 +268,8 @@
     <div class="footer">
         
     </div>
-    <input type="hidden" name="source" value="status"/>
-    <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
-    <input type="hidden" id="deleteId" name="deleteId" value=""/>
+     <html:hidden property="pageSource" value="status"/>  
+     <input type="hidden" name="deleteId" value="" />
 </html:form>
 </body>
 </html>

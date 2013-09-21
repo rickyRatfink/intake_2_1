@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import com.yada180.sms.domain.IntakeJobSkill;
 import com.yada180.sms.domain.StudentHistory;
 import com.yada180.sms.domain.SystemUser;
 import com.yada180.sms.hibernate.HibernateUtil;
@@ -39,12 +40,41 @@ public class StudentHistoryDao {
 		return StudentHistory;
 	}
 	
+	public List findByIntakeId(Long id) {
+
+		LOGGER.setLevel(Level.INFO);
+		List<IntakeJobSkill> list = new ArrayList<IntakeJobSkill>();
+		Transaction tx = null;
+		try {
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
+			tx.begin();
+			StringBuffer query = new StringBuffer(
+					"from StudentHistory where intakeId = :intakeId ");
+			Query q = session.createQuery(query.toString());
+			q.setLong("intakeId", id);
+			list = q.list();
+			tx.commit();
+		} catch (Exception e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+	
 	public List listStudentHistorys() {
 		LOGGER.setLevel(Level.INFO);
 	    List<StudentHistory> list = new ArrayList<StudentHistory>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM StudentHistory").list();                       
         	tx.commit();
@@ -64,6 +94,8 @@ public class StudentHistoryDao {
 		Transaction tx = null;
 		Long key = null;
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 		tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
@@ -81,6 +113,8 @@ public class StudentHistoryDao {
 	public void updateStudentHistory(StudentHistory obj){
 		Transaction tx = null;
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 		tx = session.beginTransaction();
 		//StudentHistory StudentHistory =
 		//(StudentHistory)session.get(StudentHistory.class, StudentHistoryID);
@@ -96,10 +130,12 @@ public class StudentHistoryDao {
 		}
 	
 	/* Method to DELETE StudentHistory */
-	public void deleteStudentHistory(Integer key){
+	public void deleteStudentHistory(Long key){
 		Transaction tx = null;
 		
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
 			StudentHistory obj =
 			(StudentHistory)session.get(StudentHistory.class, key);

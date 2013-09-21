@@ -9,7 +9,7 @@ public class IntakeJobSkill implements java.io.Serializable {
 
 	private Long intakeJobSkillId;
 	private long jobSkillId;
-	private String intakeId;
+	private long intakeId;
 
 	public IntakeJobSkill() {
 	}
@@ -18,7 +18,7 @@ public class IntakeJobSkill implements java.io.Serializable {
 		this.jobSkillId = jobSkillId;
 	}
 
-	public IntakeJobSkill(long jobSkillId, String intakeId) {
+	public IntakeJobSkill(long jobSkillId, long intakeId) {
 		this.jobSkillId = jobSkillId;
 		this.intakeId = intakeId;
 	}
@@ -39,12 +39,14 @@ public class IntakeJobSkill implements java.io.Serializable {
 		this.jobSkillId = jobSkillId;
 	}
 
-	public String getIntakeId() {
-		return this.intakeId;
+	public long getIntakeId() {
+		return intakeId;
 	}
 
-	public void setIntakeId(String intakeId) {
+	public void setIntakeId(long intakeId) {
 		this.intakeId = intakeId;
 	}
+
+	
 
 }

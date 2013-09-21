@@ -41,7 +41,11 @@ function moveOnMax(field,nextFieldID){
 		<td colspan="8"><b>Personal Information: </b></td>
 	</tr>
 
-    <jsp:include page="../../includes/messages.jsp" flush="true"/>
+    <tr>
+		<td colspan="11">
+    		<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	   </td>
+	</tr>
 
 	<tr>
     	<td colspan="8">
@@ -49,11 +53,16 @@ function moveOnMax(field,nextFieldID){
                 <tr>
                 	<td>Photo</td>
                 	<td colspan="2">
-                	       <img src="<%=request.getContextPath()%>/photos/person.jpg" width="200" height="133"/>
+                			<logic:notEmpty name="intakeForm" property="intake.imageHeadshot">
+                		   		<img src="<%=request.getContextPath()%>/Image.do" width="200" height="133"/>
+                		    </logic:notEmpty>
+                	        <logic:empty name="intakeForm" property="intake.imageHeadshot">
+                	       		<img src="<%=request.getContextPath()%>/images/local/person.jpg" width="200" height="133"/>
+                	       </logic:empty>
                 	</td>
                 	<td colspan="5">
                     	You may need to refresh your browser to see the lastest photo.<br/>
-                        <a href="<%=request.getContextPath()%>/pages/student/photo.jsp">Edit Photo</a>
+                        <a href="<%=request.getContextPath()%>/Intake.do?action=Photo">Edit Photo</a>
                     </td>
                 </tr>
                 <tr>
@@ -80,9 +89,7 @@ function moveOnMax(field,nextFieldID){
                 <td>&nbsp;&nbsp;</td>
                 <td >Referred to Faith Farm By</td>
                 <td>
-                    <html:select property="intake.farmBase" > 
-						<html:optionsCollection name="ddl_farm" value="name" label="name" />
-					</html:select>
+                    <html:text property="intake.referredBy" size="30" maxlength="11" />
                 </td>
            		</tr>
             
@@ -119,7 +126,7 @@ function moveOnMax(field,nextFieldID){
                 	<html:text property="intake.referredByPhone" size="20" maxlength="13" onkeypress="return isNumberKey(event)" />
                 </td>
                 <td width="200">Date of Birth&nbsp;<i>(mm/dd/yyyy)</i>&nbsp;
-                	<html:text property="intake.dob" size="10" maxlength="10" onkeypress="return isNumberKey(event)" />
+                	<html:text property="intake.dob" size="10" maxlength="10"  />
                 </td>
                 <td>Age&nbsp;<html:text property="intake.age" size="2"  maxlength="2" onkeypress="return isNumberKey(event)"/></td>
                 </tr>                
@@ -146,13 +153,13 @@ function moveOnMax(field,nextFieldID){
                 <tr>
                     <td width="250">Marial Status&nbsp;
                     	<html:select property="intake.maritalStatus" styleClass="select" >
-							
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_maritalstatus" value="value" label="label" />
 						</html:select>
                     </td>
                     <td>Ethnicity
 		                 <html:select property="intake.ethnicity" styleClass="select" >
-							
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_ethnicity" value="value" label="label" />
 						</html:select>
                     </td>
@@ -169,13 +176,13 @@ function moveOnMax(field,nextFieldID){
 		<td>Weight&nbsp;<html:text property="intake.weight" size="6" /></td>
 		<td>Eyes Color&nbsp;
         		        <html:select property="intake.eyeColor" styleClass="select" >
-							
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_eyecolor" value="value" label="label" />
 						</html:select>
         </td>
 		<td>Hair Color&nbsp;
     		            <html:select property="intake.hairColor" styleClass="select" >
-							
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_haircolor" value="value" label="label" />
 						</html:select>
         </td>
@@ -192,7 +199,7 @@ function moveOnMax(field,nextFieldID){
         <td>Where do you live?
 				&nbsp;&nbsp;
     		            <html:select property="intake.homeLocation" styleClass="select" >
-							
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_living" value="value" label="label" />
 						</html:select>
 		</td>
@@ -259,7 +266,7 @@ function moveOnMax(field,nextFieldID){
     
 	<tr>
 		<td colspan="8">Other benefits?&nbsp;&nbsp;
-		<html:text property="intake.otherBenefits" size="20" maxlength="20" />-->
+		<html:text property="intake.otherBenefits" size="20" maxlength="20" />
         </td>	
     </tr>
     
@@ -280,7 +287,7 @@ function moveOnMax(field,nextFieldID){
 		</td>
         <td>Branch of Service? &nbsp;
 	   		            <html:select property="intake.branchOfService" styleClass="select" >
-							
+							<html:option value="">Select</html:option>
 							<html:optionsCollection name="ddl_military" value="value" label="label" />
 						</html:select>
 		</td>

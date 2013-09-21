@@ -13,7 +13,11 @@
 		<td colspan="8"><b>Legal Information:</b></td>
 	</tr>
 	
-	<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	<tr>
+		<td colspan="11">
+    		<jsp:include page="../../includes/messages.jsp" flush="true"/>
+	   </td>
+	</tr>
 	
 		<tr>
 		<td colspan="8">Have you ever been sued?&nbsp;
@@ -158,8 +162,7 @@
     <div class="footer">
         
     </div>
-   <input type="hidden" name="source" value="legal"/>
-    <input type="hidden" name="key" value="<bean:write name="intakeForm" property="intake.intakeId"/>"/>
+  <html:hidden property="pageSource" value="legal"/>  
 </html:form>
 </body>
 </html>

@@ -62,9 +62,9 @@
 		<li><a href="<%=request.getContextPath()%>/pages/index.jsp">Home</a></li>
         <li><a href="<%=request.getContextPath()%>/pages/about.jsp">About</a></li>
         <% if ("ADMIN".equals(user.getUserRole())) { %>
-             <li><a href="<%=request.getContextPath()%>/student?action=Apps">Applications</a></li>
+             <li><a href="<%=request.getContextPath()%>/Intake.doaction=Apps">Applications</a></li>
              <li><a href="<%=request.getContextPath()%>/Intake.do?action=Search">Search</a></li>
-             <li><a href="<%=request.getContextPath()%>/student?action=Create Student">New Student</a></li>
+             <li><a href="<%=request.getContextPath()%>/Intake.do?action=Create">New Student</a></li>
              <li><a href="<%=request.getContextPath()%>/pages/student/results.jsp">Search Result</a></li>
              <li><a href="<%=request.getContextPath()%>/cwt">CWT</a></li>
              <li><a href="<%=request.getContextPath()%>/pages/reports/index.jsp">Reports for Printing</a></li>
