@@ -42,7 +42,9 @@ public class CwtSupervisorDao {
 	    List<CwtSupervisor> list = new ArrayList<CwtSupervisor>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtSupervisor").list();                       
         	tx.commit();
@@ -62,7 +64,10 @@ public class CwtSupervisorDao {
 		Transaction tx = null;
 		Long key = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+
+			tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -79,7 +84,9 @@ public class CwtSupervisorDao {
 	public void updateCwtSupervisor(CwtSupervisor obj){
 		Transaction tx = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		//CwtSupervisor CwtSupervisor =
 		//(CwtSupervisor)session.get(CwtSupervisor.class, CwtSupervisorID);
 		//CwtSupervisor.setSalary( salary );
@@ -98,6 +105,8 @@ public class CwtSupervisorDao {
 		Transaction tx = null;
 		
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
 			CwtSupervisor obj =
 			(CwtSupervisor)session.get(CwtSupervisor.class, key);

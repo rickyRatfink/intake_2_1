@@ -44,7 +44,9 @@ public class CwtJobDao {
 	    List<CwtJob> list = new ArrayList<CwtJob>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtJob").list();                       
         	tx.commit();
@@ -64,7 +66,9 @@ public class CwtJobDao {
 		Transaction tx = null;
 		Long key = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -81,7 +85,9 @@ public class CwtJobDao {
 	public void updateCwtJob(CwtJob obj){
 		Transaction tx = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		//CwtJob CwtJob =
 		//(CwtJob)session.get(CwtJob.class, CwtJobID);
 		//CwtJob.setSalary( salary );
@@ -100,6 +106,8 @@ public class CwtJobDao {
 		Transaction tx = null;
 		
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
 			CwtJob obj =
 			(CwtJob)session.get(CwtJob.class, key);

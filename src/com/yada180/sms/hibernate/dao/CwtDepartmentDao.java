@@ -44,7 +44,9 @@ public class CwtDepartmentDao {
 	    List<CwtDepartment> list = new ArrayList<CwtDepartment>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtDepartment").list();                       
         	tx.commit();
@@ -64,7 +66,9 @@ public class CwtDepartmentDao {
 		Transaction tx = null;
 		Long key = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -81,7 +85,9 @@ public class CwtDepartmentDao {
 	public void updateCwtDepartment(CwtDepartment obj){
 		Transaction tx = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.beginTransaction();
 		//CwtDepartment CwtDepartment =
 		//(CwtDepartment)session.get(CwtDepartment.class, CwtDepartmentID);
 		//CwtDepartment.setSalary( salary );
@@ -100,6 +106,8 @@ public class CwtDepartmentDao {
 		Transaction tx = null;
 		
 		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
 			tx = session.beginTransaction();
 			CwtDepartment obj =
 			(CwtDepartment)session.get(CwtDepartment.class, key);

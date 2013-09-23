@@ -20,14 +20,23 @@
     <mapping resource="com/yada180/sms/hibernate/mappings/Question.hbm.xml"/> 
     <mapping resource="com/yada180/sms/hibernate/mappings/MedicalCondition.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/JobSkill.hbm.xml"/>
-    <mapping resource="com/yada180/sms/hibernate/mappings/CwtSupervisor.hbm.xml"/>
-    <mapping resource="com/yada180/sms/hibernate/mappings/CwtJob.hbm.xml"/>
-    <mapping resource="com/yada180/sms/hibernate/mappings/CwtDepartment.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/StudentHistory.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/StudentPassHistory.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/IntakeMedicalCondition.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/IntakeQuestionAnswer.hbm.xml"/>
     <mapping resource="com/yada180/sms/hibernate/mappings/IntakeJobSkill.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtSupervisor.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtJob.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtDepartment.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtJobMetric.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtMetrics.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtModuleOffering.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtModuleStudent.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtModules.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtProgram.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtProgramMetric.hbm.xml"/>
+    <mapping resource="com/yada180/sms/hibernate/mappings/CwtProgramMetricModules.hbm.xml"/>
+    
     
   </session-factory>
 </hibernate-configuration>

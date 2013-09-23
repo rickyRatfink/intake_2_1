@@ -66,7 +66,7 @@
              <li><a href="<%=request.getContextPath()%>/Intake.do?action=Search">Search</a></li>
              <li><a href="<%=request.getContextPath()%>/Intake.do?action=Create">New Student</a></li>
              <li><a href="<%=request.getContextPath()%>/pages/student/results.jsp">Search Result</a></li>
-             <li><a href="<%=request.getContextPath()%>/cwt">CWT</a></li>
+             <li><a href="<%=request.getContextPath()%>/Cwt.do">CWT</a></li>
              <li><a href="<%=request.getContextPath()%>/pages/reports/index.jsp">Reports for Printing</a></li>
              <li><a href="<%=request.getContextPath()%>/pages/">Fast Find</a></li>
         <% } %>

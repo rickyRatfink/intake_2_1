@@ -21,4 +21,14 @@ public final class Constants {
 	public static final String PHOTO="photo";
 	public static final String APPLICATIONS="applications";
 	public static final String SEARCH_APPLICATIONS="searchapps";
+	
+	public static final String METRICS="metrics";
+	public static final String MODULES="modules";
+	public static final String PROGRAMS="programs";
+	public static final String JOBS="jobs";
+	public static final String SUPERVISORS="supervisors";
+	public static final String DEPARTMENTS="departments";
+	public static final String ROTATE="rotate";
+
+	
 }

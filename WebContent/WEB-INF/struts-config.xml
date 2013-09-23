@@ -9,6 +9,7 @@
     <form-beans>
         <form-bean name="loginForm" type="com.yada180.sms.struts.form.LoginForm"></form-bean>
         <form-bean name="intakeForm" type="com.yada180.sms.struts.form.IntakeForm"></form-bean>
+        <form-bean name="cwtForm" type="com.yada180.sms.struts.form.CwtForm"></form-bean>
     </form-beans>
     
     <global-exceptions>
@@ -29,10 +30,24 @@
                  <forward name="error" path="/pages/error.jsp" redirect="true"/>               
          </action>
        
-    </action-mappings>
-    
-    <action-mappings>
-        
+   
+         <action name="cwtForm" path="/Cwt" type="com.yada180.sms.struts.action.CwtAction" scope="session" >
+                 <forward name="success" path="/pages/cwt/index.jsp" redirect="true"/>
+                 <forward name="programs" path="/pages/cwt/programs/results.jsp" redirect="true"/>
+                 <forward name="metrics" path="/pages/cwt/metrics/results.jsp" redirect="true"/>
+                 <forward name="modules" path="/pages/cwt/modules/results.jsp" redirect="true"/>
+                 <forward name="jobs" path="/pages/cwt/jobs/results.jsp" redirect="true"/>
+                 <forward name="supervisors" path="/pages/cwt/supervisors/results.jsp" redirect="true"/>
+                 <forward name="departments" path="/pages/cwt/departments/results.jsp" redirect="true"/>
+                 <forward name="create_job" path="/pages/cwt/jobs/create.jsp" redirect="true"/>
+                 <forward name="create_supervisor" path="/pages/cwt/supervisors/create.jsp" redirect="true"/>
+                 <forward name="create_department" path="/pages/cwt/departments/create.jsp" redirect="true"/>
+                 
+                 <forward name="failure" path="/pages/cwt/index.jsp" redirect="true"/>
+                 <forward name="error" path="/pages/error.jsp" redirect="true"/>               
+         </action>
+       
+     
          <action name="intakeForm" path="/Intake" type="com.yada180.sms.struts.action.IntakeAction" scope="session"  
              validate="false">
                  <forward name="success" path="/pages/index.jsp" redirect="true"/>
@@ -53,11 +68,7 @@
                  <forward name="applications" path="/pages/applications/results.jsp" redirect="true"/> 
                  <forward name="searchapps" path="/pages/applications/search.jsp" redirect="true"/>                    
          </action>
-       
-    </action-mappings>
-    
-     <action-mappings>
-        
+           
          <action name="intakeForm" path="/Image" type="com.yada180.sms.struts.action.ImageAction" scope="session"  
              validate="false">
                  <forward name="success" path="/pages/student/personal.jsp" redirect="true"/>
