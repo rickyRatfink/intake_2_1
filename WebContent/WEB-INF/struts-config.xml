@@ -10,6 +10,7 @@
         <form-bean name="loginForm" type="com.yada180.sms.struts.form.LoginForm"></form-bean>
         <form-bean name="intakeForm" type="com.yada180.sms.struts.form.IntakeForm"></form-bean>
         <form-bean name="cwtForm" type="com.yada180.sms.struts.form.CwtForm"></form-bean>
+        <form-bean name="reportForm" type="com.yada180.sms.struts.form.ReportForm"></form-bean>
     </form-beans>
     
     <global-exceptions>
@@ -29,6 +30,13 @@
                  <forward name="failure" path="/pages/security/index.jsp" redirect="true"/>
                  <forward name="error" path="/pages/error.jsp" redirect="true"/>               
          </action>
+
+         <action name="reportForm" path="/Report" type="com.yada180.sms.struts.action.ReportAction" scope="session" input="/pages/reports/index.jsp" >
+                 <forward name="success" path="/pages/reports/index.jsp" redirect="true"/>
+                 <forward name="failure" path="/pages/reports/index.jsp" redirect="true"/>
+                 <forward name="error" path="/pages/error.jsp" redirect="true"/>    
+                 <forward name="class_report" path="/pages/reports/class_list.jsp" redirect="true"/>
+         </action>
        
    
          <action name="cwtForm" path="/Cwt" type="com.yada180.sms.struts.action.CwtAction" scope="session" >
@@ -42,7 +50,9 @@
                  <forward name="create_job" path="/pages/cwt/jobs/create.jsp" redirect="true"/>
                  <forward name="create_supervisor" path="/pages/cwt/supervisors/create.jsp" redirect="true"/>
                  <forward name="create_department" path="/pages/cwt/departments/create.jsp" redirect="true"/>
-                 
+                 <forward name="create_program" path="/pages/cwt/programs/create.jsp" redirect="true"/>
+                 <forward name="create_metrics" path="/pages/cwt/metrics/create.jsp" redirect="true"/>
+                 <forward name="create_modules" path="/pages/cwt/modules/create.jsp" redirect="true"/>
                  <forward name="failure" path="/pages/cwt/index.jsp" redirect="true"/>
                  <forward name="error" path="/pages/error.jsp" redirect="true"/>               
          </action>

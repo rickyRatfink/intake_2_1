@@ -97,7 +97,14 @@ public class HtmlDropDownBuilder {
         CwtSupervisorDao dao4 = new CwtSupervisorDao();
         List<CwtSupervisor> list4 = new ArrayList<CwtSupervisor>();
         list4=dao4.listCwtSupervisors();
-        session.setAttribute("ddl_supervisor", list4);
+        List<DropDownItem> temp = new ArrayList<DropDownItem>();
+        for (Iterator iterator =
+        		list4.iterator(); iterator.hasNext();){
+	    	   CwtSupervisor obj = (CwtSupervisor) iterator.next();
+	    	   DropDownItem item = new DropDownItem(obj.getSupervisorId()+"",obj.getFirstname()+" "+obj.getLastname());
+	    	   temp.add(item);
+	       }
+        session.setAttribute("ddl_supervisor", temp);
 
         CwtJobDao dao5 = new CwtJobDao();
         List<CwtJob> list5 = new ArrayList<CwtJob>();
@@ -108,6 +115,12 @@ public class HtmlDropDownBuilder {
         List<CwtDepartment> list6 = new ArrayList<CwtDepartment>();
         list6=dao6.listCwtDepartments();
         session.setAttribute("ddl_department", list6);
+
+        
+		   List<DropDownItem> cwtStatus = new ArrayList<DropDownItem>();
+		   cwtStatus.add(new DropDownItem("Active","Active"));
+		   cwtStatus.add(new DropDownItem("Inactive","Inactive"));
+		   session.setAttribute("ddl_cwtStatus", cwtStatus);
 
 		   List<DropDownItem> suffix = new ArrayList<DropDownItem>();
 		   suffix.add(new DropDownItem("Jr.","Jr."));
@@ -155,6 +168,20 @@ public class HtmlDropDownBuilder {
 	        yesNo.add(new DropDownItem("NO","NO"));
 	        yesNo.add(new DropDownItem("YES","YES"));
 	        session.setAttribute("ddl_yesNo", yesNo);
+	        
+	        List<DropDownItem> classList = new ArrayList<DropDownItem>();
+	        classList.add(new DropDownItem("Orientation","Orientation"));
+	        classList.add(new DropDownItem("1","1"));
+	        classList.add(new DropDownItem("2","2"));
+	        classList.add(new DropDownItem("3","3"));
+	        classList.add(new DropDownItem("4","4"));
+	        classList.add(new DropDownItem("5","5"));
+	        classList.add(new DropDownItem("6","6"));
+	        classList.add(new DropDownItem("Fresh Start","Fresh Start"));
+	        classList.add(new DropDownItem("SLS","SLS"));
+	        classList.add(new DropDownItem("Intern","Intern"));
+	        classList.add(new DropDownItem("Student Teacher","Student Teacher"));
+	        session.setAttribute("ddl_classList", classList);
 	        
 	        List<DropDownItem> military = new ArrayList<DropDownItem>();
 	        military.add(new DropDownItem("Air Force","Air Force"));

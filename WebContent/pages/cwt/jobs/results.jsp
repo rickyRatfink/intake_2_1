@@ -29,7 +29,9 @@
               
                 <tr>
                     <td class="searchRowOdd2">
-                    	 <img src="<%=request.getContextPath()%>/images/local/Edit.gif" width="16" height="14"/>
+                    	 <a href="<%=request.getContextPath()%>/Cwt.do?action=Edit&id=<bean:write name="loop1" property="jobId"/>">
+                    	 	<img src="<%=request.getContextPath()%>/images/local/Edit.gif" width="16" height="14"/>
+                    	 </a>
                     </td>
                    	<td class="searchRowOdd2"><bean:write name="loop1" property="title"/></td>
                     <td class="searchRowOdd2"><bean:write name="loop1" property="createdBy"/></td>

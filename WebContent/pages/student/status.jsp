@@ -25,11 +25,10 @@
             </tr>
             <tr>
             	<td>
-                      <html:select property="intake.supervisorId" styleClass="status"> 
+ 					  <html:select property="intake.supervisorId" styleClass="status"> 
                       	<html:option value="">Select</html:option>
-						<html:optionsCollection name="ddl_supervisor" value="supervisorId" label="firstname" />
+						<html:optionsCollection name="ddl_supervisor" value="value" label="label" />
 					  </html:select>
-
             	</td>
             </tr>
             <tr>
@@ -49,7 +48,11 @@
             </tr>
             <tr>
             	<td>
-            		<html:text property="intake.class_" size="20" maxlength="20"/>
+  					  <html:select property="intake.class_" styleClass="status"> 
+                      	<html:option value="">Select</html:option>
+						<html:optionsCollection name="ddl_classList" value="value" label="label" />
+					  </html:select>
+ 
             	</td>
             </tr>
             <tr>

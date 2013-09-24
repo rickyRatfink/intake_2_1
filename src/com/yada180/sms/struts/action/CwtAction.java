@@ -66,12 +66,20 @@ public class CwtAction extends Action {
 		 CwtModuleStudentDao cwtModuleStudentDao = new CwtModuleStudentDao();
 		 CwtJobMetricDao cwtJobMetricDao = new CwtJobMetricDao();
 		 
-		 if ("programs".equals(action))
+		 if ("programs".equals(action)) {
+			 cwtForm.setProgramList(cwtProgramDao.listCwtPrograms());
 			 return mapping.findForward(Constants.PROGRAMS);
-		 else if ("metrics".equals(action))
+		 }
+		 else if ("metrics".equals(action)) {
+			 cwtForm.setMetricList(cwtMetricsDao.listCwtMetricss());
+			 cwtForm.setProgramList(cwtProgramDao.listCwtPrograms());
 			 return mapping.findForward(Constants.METRICS);
-		 else if ("modules".equals(action))
+		 }
+		 else if ("modules".equals(action)) {
+			 cwtForm.setModuleList(cwtModulesDao.listCwtModuless());
+			 cwtForm.setMetricList(cwtMetricsDao.listCwtMetricss());
 			 return mapping.findForward(Constants.MODULES);
+		 }
 		 else if ("departments".equals(action)) {
 			 cwtForm.setDepartmentList(cwtDepartmentDao.listCwtDepartments());
 			 return mapping.findForward(Constants.DEPARTMENTS);
@@ -87,6 +95,9 @@ public class CwtAction extends Action {
 		 }
 		 else if ("rotate".equals(action))
 			 return mapping.findForward(Constants.ROTATE);
+		 else if ("Edit".equals(action)) {
+			 return mapping.findForward("create_"+cwtForm.getPageSource());
+		 }
 		 else if ("Create".equals(action)) {
 			 cwtForm.setCwtDepartment(new CwtDepartment());
 			 cwtForm.setCwtJob(new CwtJob());
@@ -94,7 +105,20 @@ public class CwtAction extends Action {
 			 return mapping.findForward("create_"+cwtForm.getPageSource());
 		 }
 		 else if ("Save".equals(action)) {
-			 
+			 if ("program".equals(cwtForm.getPageSource())) {
+				 cwtForm.getCwtProgram().setCreatedBy(user.getUsername());
+				 cwtForm.getCwtProgram().setCreationDate(validator.getEpoch()+"");
+				 cwtProgramDao.addCwtProgram(cwtForm.getCwtProgram());
+				 cwtForm.setProgramList(cwtProgramDao.listCwtPrograms());
+				 return mapping.findForward(Constants.PROGRAMS);
+			 }
+			 if ("metric".equals(cwtForm.getPageSource())) {
+				 cwtForm.getCwtMetric().setCreatedBy(user.getUsername());
+				 cwtForm.getCwtMetric().setCreationDate(validator.getEpoch()+"");
+				 cwtMetricsDao.addCwtMetrics(cwtForm.getCwtMetric());
+				 cwtForm.setMetricList(cwtMetricsDao.listCwtMetricss());
+				 return mapping.findForward(Constants.PROGRAMS);
+			 }
 			 if ("department".equals(cwtForm.getPageSource())) {
 				 cwtForm.getCwtDepartment().setCreatedBy(user.getUsername());
 				 cwtForm.getCwtDepartment().setCreationDate(validator.getEpoch()+"");

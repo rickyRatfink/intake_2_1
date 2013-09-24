@@ -31,7 +31,9 @@
                 <logic:iterate id="loop1" name="cwtForm" property="supervisorList">
                 <tr>
                     <td class="searchRowOdd2">
-                    	 <img src="<%=request.getContextPath()%>/images/local/Edit.gif" width="16" height="14"/>&nbsp;
+                    	 <a href="<%=request.getContextPath()%>/Cwt.do?action=Edit&id=<bean:write name="loop1" property="supervisorId"/>">
+                    	 	<img src="<%=request.getContextPath()%>/images/local/Edit.gif" width="16" height="14"/>
+                    	 </a>
                    	<td class="searchRowOdd2" ><bean:write name="loop1" property="firstname"/>&nbsp;<bean:write name="loop1" property="lastname"/></td>
                     <td class="searchRowOdd2" >job title</td>
                     <td class="searchRowOdd2" >dept</td>

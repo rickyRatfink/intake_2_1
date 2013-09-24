@@ -48,10 +48,16 @@ td { webkit-print-color-adjust: exact;
 	background:#87cefa;
 }
 .reportRow {
-	font: .70em Arial;
+	font: .65em Arial;
 	color: #000000;
 	text-align:left;
 	text-transform:capitalize; 
 	
 }
-
+.reportStudentNameRow {
+	font: .65em Arial;
+	color: #000000; 
+	text-align:left;
+	text-transform:uppercase; 
+	
+}

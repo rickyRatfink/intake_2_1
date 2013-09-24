@@ -30,7 +30,9 @@
                 <logic:iterate id="loop" name="cwtForm" property="departmentList">
                 <tr>
                     <td class="searchRowOdd2">
-                    	 <img src="<%=request.getContextPath()%>/images/local/Edit.gif" width="16" height="14"/>&nbsp;
+                    	 <a href="<%=request.getContextPath()%>/Cwt.do?action=Edit&id=<bean:write name="loop" property="departmentId"/>">
+                    	 	<img src="<%=request.getContextPath()%>/images/local/Edit.gif" width="16" height="14"/>
+                    	 </a>
                     <td class="searchRowOdd2"><bean:write name="loop" property="title"/></td>
                     <td class="searchRowOdd2"><bean:write name="loop" property="farmBase"/></td>
                     <td class="searchRowOdd2"><bean:write name="loop" property="createdBy"/></td>

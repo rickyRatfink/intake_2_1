@@ -59,12 +59,17 @@ public class IntakeDao {
         return list;
 	}	
 	
+	
+	
 	/* Method to INSERT Intake */
 	public Long addIntake(Intake obj){
 		Transaction tx = null;
 		Long key = null;
 		try{
-		tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
+
 		key = (Long) session.save(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -100,7 +105,10 @@ public class IntakeDao {
 		Transaction tx = null;
 		
 		try{
-			tx = session.beginTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
+
 			Intake obj =
 			(Intake)session.get(Intake.class, key);
 			session.delete(obj);
@@ -148,6 +156,34 @@ public class IntakeDao {
 		
 		List list = q.list();
 		return list;
+	}
+	
+	
+	
+	public List listClass(String classNumber, String farm) {
+	
+		List <Intake> list = new ArrayList<Intake>();
+		Transaction tx = null;   
+		try{
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+			tx = session.getTransaction();
+
+		StringBuffer query = new StringBuffer("from Intake where 1=1 ");
+		query.append(" and class_ = :class_ ");
+		query.append(" and farmBase = :farmBase ");
+		Query q = session.createQuery(query.toString());
+		q.setString("class_", classNumber);
+		q.setString("farmBase", farm);
+		
+		list = q.list();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace();
+			}finally {
+			session.close();
+			}
+	return list;
 	}
 }
 
