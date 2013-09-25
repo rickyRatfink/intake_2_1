@@ -11,6 +11,7 @@
         <form-bean name="intakeForm" type="com.yada180.sms.struts.form.IntakeForm"></form-bean>
         <form-bean name="cwtForm" type="com.yada180.sms.struts.form.CwtForm"></form-bean>
         <form-bean name="reportForm" type="com.yada180.sms.struts.form.ReportForm"></form-bean>
+        <form-bean name="onlineAppForm" type="com.yada180.sms.struts.form.OnlineAppForm"></form-bean>
     </form-beans>
     
     <global-exceptions>
@@ -28,6 +29,20 @@
              validate="true">
                  <forward name="success" path="/pages/index.jsp" redirect="true"/>
                  <forward name="failure" path="/pages/security/index.jsp" redirect="true"/>
+                 <forward name="error" path="/pages/error.jsp" redirect="true"/>               
+         </action>
+
+        <action name="onlineAppForm" path="/OnlineApp" type="com.yada180.sms.struts.action.OnlineAppAction" scope="session" input="/pages/onlineapp/index.jsp" 
+             validate="true">
+                 <forward name="success" path="/pages/onlineapp/confirmation.jsp" redirect="true"/>
+                 <forward name="personal" path="/pages/onlineapp/personal.jsp" redirect="true"/>
+                 <forward name="religious" path="/pages/onlineapp/religious.jsp" redirect="true"/>
+                 <forward name="substance" path="/pages/onlineapp/substance.jsp" redirect="true"/>
+                 <forward name="health" path="/pages/onlineapp/health.jsp" redirect="true"/>
+                 <forward name="legal" path="/pages/onlineapp/legal.jsp" redirect="true"/>
+                 <forward name="employment" path="/pages/onlineapp/employment.jsp" redirect="true"/>
+                 <forward name="process" path="/pages/onlineapp/process.jsp" redirect="true"/>
+                 <forward name="failure" path="/pages/onlineapp/index.jsp" redirect="true"/>
                  <forward name="error" path="/pages/error.jsp" redirect="true"/>               
          </action>
 

@@ -44,7 +44,7 @@ public class CwtSupervisorDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtSupervisor").list();                       
         	tx.commit();

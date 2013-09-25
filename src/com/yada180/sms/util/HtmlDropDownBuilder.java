@@ -25,6 +25,7 @@ import com.yada180.sms.hibernate.dao.MedicalConditionDao;
 import com.yada180.sms.hibernate.dao.QuestionDao;
 import com.yada180.sms.hibernate.dao.StateDao;
 import com.yada180.sms.struts.form.IntakeForm;
+import com.yada180.sms.struts.form.OnlineAppForm;
 
 public class HtmlDropDownBuilder {
 
@@ -35,6 +36,7 @@ public class HtmlDropDownBuilder {
 	        List<Question> emotionalQuestions = new ArrayList<Question>();
 	        List<Question> physicalQuestions = new ArrayList<Question>();
 	        List<Question> mentalQuestions = new ArrayList<Question>();
+	        
 	        IntakeForm intakeForm = (IntakeForm)form;
 	        
 	        int count=0;
@@ -294,5 +296,58 @@ public class HtmlDropDownBuilder {
 	        herniaSide.add(new DropDownItem("LEFT","LEFT"));
 	        session.setAttribute("ddl_herniaside", herniaSide);
 	 
+	}
+	
+	public void getOnlineApplicationQuestions(ActionForm form) {
+	      QuestionDao dao4 = new QuestionDao();
+	        List<Question> questions = new ArrayList<Question>();
+	        List<Question> healthQuestions = new ArrayList<Question>();
+	        List<Question> emotionalQuestions = new ArrayList<Question>();
+	        List<Question> physicalQuestions = new ArrayList<Question>();
+	        List<Question> mentalQuestions = new ArrayList<Question>();
+	        
+	        OnlineAppForm onlineAppForm = (OnlineAppForm)form;
+	        
+	        int count=0;
+	        questions=dao4.listQuestions();
+	        for (Iterator iterator =
+	    			questions.iterator(); iterator.hasNext();){
+	    			Question obj = (Question) iterator.next();
+	                
+	    			if (count<15)
+	    				healthQuestions.add(obj);
+	    			else if (count>14&&count<21)
+	    				emotionalQuestions.add(obj);
+	    			else if (count>20&&count<26)
+	    				physicalQuestions.add(obj);
+	    			else if (count>25&&count<32)
+	    				mentalQuestions.add(obj);
+	    			
+	        count++;
+	        }
+	       onlineAppForm.setHealthQuestions(healthQuestions);
+	       onlineAppForm.setEmotionalQuestions(emotionalQuestions);
+	       onlineAppForm.setPhysicalQuestions(physicalQuestions);
+	       onlineAppForm.setMentalQuestions(mentalQuestions);	       
+	       
+	       MedicalConditionDao dao5 = new MedicalConditionDao();
+	       List<MedicalCondition> medicalConditions = new ArrayList<MedicalCondition>();
+	       medicalConditions = dao5.listMedicalConditions();
+	       for (Iterator iterator =
+	    		   medicalConditions.iterator(); iterator.hasNext();){
+	    	   MedicalCondition obj = (MedicalCondition) iterator.next();	    			
+	       }
+	       onlineAppForm.setMedicalConditions(medicalConditions);
+	       
+	       JobSkillDao dao6 = new JobSkillDao();
+	       List<JobSkill> jobSkills = new ArrayList<JobSkill>();
+	       jobSkills = dao6.listJobSkills();
+	       for (Iterator iterator =
+	    		   jobSkills.iterator(); iterator.hasNext();){
+	    	   JobSkill obj = (JobSkill) iterator.next();	    			
+	       }
+	       onlineAppForm.setJobSkills(jobSkills);
+	 
+	       
 	}
 }

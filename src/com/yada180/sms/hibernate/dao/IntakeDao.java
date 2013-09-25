@@ -44,7 +44,10 @@ public class IntakeDao {
 	    List<Intake> list = new ArrayList<Intake>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+			if (!session.isOpen())
+				session = HibernateUtil.openSession();
+
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM Intake").list();                       
         	tx.commit();
@@ -68,8 +71,7 @@ public class IntakeDao {
 		try{
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
-
+			tx = session.beginTransaction();
 		key = (Long) session.save(obj);
 		tx.commit();
 		}catch (HibernateException e) {
@@ -107,7 +109,7 @@ public class IntakeDao {
 		try{
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 
 			Intake obj =
 			(Intake)session.get(Intake.class, key);
@@ -167,7 +169,7 @@ public class IntakeDao {
 		try{
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 
 		StringBuffer query = new StringBuffer("from Intake where 1=1 ");
 		query.append(" and class_ = :class_ ");

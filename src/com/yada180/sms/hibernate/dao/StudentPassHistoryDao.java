@@ -48,7 +48,7 @@ public class StudentPassHistoryDao {
 		try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 			tx.begin();
 			StringBuffer query = new StringBuffer(
 					"from StudentPassHistory where intakeId = :intakeId ");

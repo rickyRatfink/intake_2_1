@@ -40,7 +40,7 @@ public class IntakeQuestionAnswerDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             StringBuffer query = new StringBuffer("from IntakeQuestionAnswer where intakeId = :intakeId ");
     		Query q = session.createQuery(query.toString());
@@ -67,7 +67,7 @@ public class IntakeQuestionAnswerDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM IntakeQuestionAnswer").list();                       
         	tx.commit();

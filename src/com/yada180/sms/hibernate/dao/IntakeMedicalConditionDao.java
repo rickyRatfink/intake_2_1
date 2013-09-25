@@ -38,7 +38,7 @@ public class IntakeMedicalConditionDao {
 	    List<IntakeMedicalCondition> list = new ArrayList<IntakeMedicalCondition>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             StringBuffer query = new StringBuffer("from IntakeMedicalCondition where intakeId = :intakeId ");
     		Query q = session.createQuery(query.toString());
@@ -63,7 +63,7 @@ public class IntakeMedicalConditionDao {
 	    List<IntakeMedicalCondition> list = new ArrayList<IntakeMedicalCondition>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM IntakeMedicalCondition").list();                       
         	tx.commit();

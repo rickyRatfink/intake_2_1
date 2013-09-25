@@ -44,7 +44,7 @@ public class JobSkillDao {
 	    List<JobSkill> list = new ArrayList<JobSkill>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM JobSkill").list();                       
         	tx.commit();

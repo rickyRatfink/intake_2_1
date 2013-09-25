@@ -46,7 +46,7 @@ public class CwtJobDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtJob").list();                       
         	tx.commit();

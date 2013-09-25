@@ -46,7 +46,7 @@ public class CwtMetricsDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtMetrics").list();                       
         	tx.commit();

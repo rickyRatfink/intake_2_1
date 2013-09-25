@@ -34,6 +34,7 @@ public final class Constants {
 	public static final String BED_REPORT="bed_report";
 	public static final String JOB_REPORT="job_report";
 	
+	public static final String PROCESS="process";
 
 	
 }

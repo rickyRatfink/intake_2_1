@@ -55,7 +55,7 @@ public class SystemUserDao {
 	    List<SystemUser> list = new ArrayList<SystemUser>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM SystemUser").list();                       
         	tx.commit();

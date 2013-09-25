@@ -46,7 +46,7 @@ public class CwtProgramMetricModulesDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtProgramMetricModules").list();                       
         	tx.commit();

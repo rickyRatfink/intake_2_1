@@ -47,7 +47,7 @@ public class CwtJobMetricDao {
         try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM CwtJobMetric").list();                       
         	tx.commit();
@@ -130,7 +130,7 @@ public class CwtJobMetricDao {
 		try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 			tx.begin();
 			StringBuffer query = new StringBuffer(
 					"from CwtJobMetric where jobId = :jobId ");

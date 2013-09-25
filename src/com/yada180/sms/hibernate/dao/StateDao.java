@@ -44,7 +44,7 @@ public class StateDao {
 	    List<State> list = new ArrayList<State>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM State").list();                       
         	tx.commit();

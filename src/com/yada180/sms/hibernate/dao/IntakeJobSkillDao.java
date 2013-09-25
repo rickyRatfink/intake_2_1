@@ -41,7 +41,7 @@ public class IntakeJobSkillDao {
 		try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 			tx.begin();
 			StringBuffer query = new StringBuffer(
 					"from IntakeJobSkill where intakeId = :intakeId ");
@@ -67,7 +67,7 @@ public class IntakeJobSkillDao {
 		try {
 			if (!session.isOpen())
 				session = HibernateUtil.openSession();
-			tx = session.getTransaction();
+			tx = session.beginTransaction();
 			tx.begin();
 			list = session.createQuery("FROM IntakeJobSkill").list();
 			tx.commit();

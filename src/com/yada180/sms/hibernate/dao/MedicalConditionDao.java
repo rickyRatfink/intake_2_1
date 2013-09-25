@@ -44,7 +44,7 @@ public class MedicalConditionDao {
 	    List<MedicalCondition> list = new ArrayList<MedicalCondition>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM MedicalCondition").list();                       
         	tx.commit();

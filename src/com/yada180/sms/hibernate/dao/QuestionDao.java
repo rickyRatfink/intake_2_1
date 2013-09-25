@@ -44,7 +44,7 @@ public class QuestionDao {
 	    List<Question> list = new ArrayList<Question>();
 	    Transaction tx = null;        
         try {
-            tx = session.getTransaction();
+            tx = session.beginTransaction();
             tx.begin();
             list = session.createQuery("FROM Question").list();                       
         	tx.commit();
